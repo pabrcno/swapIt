@@ -7,9 +7,21 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'SwapIt',
-      home: Home(),
+      theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+        elevation: 0,
+        toolbarHeight: 60,
+        backgroundColor: Color.fromRGBO(20, 20, 20, 1),
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: 23,
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+        ),
+      )),
+      home: const Home(),
     );
   }
 }

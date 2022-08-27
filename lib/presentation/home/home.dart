@@ -10,12 +10,11 @@ class StickerPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        height: 210,
+        height: 140,
         width: double.infinity,
         child: Row(
           children: [
             Expanded(
-              flex: 2,
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -24,36 +23,40 @@ class StickerPreview extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(right: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "${previewData.sticker.name} #${previewData.sticker.id}",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).primaryColor,
-                      ),
+                    //Row with title and time left
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "${previewData.sticker.name} #${previewData.sticker.id}",
+                            style: const TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                        const Text(
+                          "20m 45s",
+                          style: TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10),
+
+                    const SizedBox(height: 5),
 
                     Text(
                       previewData.ownerLocation,
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
+                      style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
-                    const SizedBox(height: 5),
-                    const Text(
-                      'Exchangeables',
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 10),
+
                     Expanded(
                       child: ListView.separated(
                         itemCount: previewData.exchangeables.length,
@@ -69,17 +72,27 @@ class StickerPreview extends StatelessWidget {
                         },
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 10),
                     // align to the right
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        "Bid \$${previewData.price}",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Theme.of(context).primaryColorDark,
+                    // row with price and time left to exchange
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "\$ ${previewData.price}",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
+                        const Text(
+                          'Bids 4',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -97,15 +110,17 @@ class StickerPreviewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: previews.length,
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 10,
-      ),
-      itemBuilder: (context, index) {
-        return StickerPreview(previewData: previews[index]);
-      },
-    );
+    return Card(
+        margin: const EdgeInsets.only(left: 5, right: 5, top: 20),
+        child: ListView.separated(
+          itemCount: previews.length,
+          separatorBuilder: (context, index) => const SizedBox(
+            height: 30,
+          ),
+          itemBuilder: (context, index) {
+            return StickerPreview(previewData: previews[index]);
+          },
+        ));
   }
 }
 
