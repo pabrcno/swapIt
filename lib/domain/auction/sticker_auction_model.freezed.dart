@@ -26,7 +26,7 @@ mixin _$StickerAuctionModel {
   String get ownerLocation => throw _privateConstructorUsedError;
   List<StickerModel> get exchangeables => throw _privateConstructorUsedError;
   double get bestPrice => throw _privateConstructorUsedError;
-  String get winnerId => throw _privateConstructorUsedError;
+  String? get winnerId => throw _privateConstructorUsedError;
   DateTime get auctionEnd => throw _privateConstructorUsedError;
   DateTime get auctionStart => throw _privateConstructorUsedError;
   List<BidModel> get bids => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $StickerAuctionModelCopyWith<$Res> {
       String ownerLocation,
       List<StickerModel> exchangeables,
       double bestPrice,
-      String winnerId,
+      String? winnerId,
       DateTime auctionEnd,
       DateTime auctionStart,
       List<BidModel> bids});
@@ -107,7 +107,7 @@ class _$StickerAuctionModelCopyWithImpl<$Res>
       winnerId: winnerId == freezed
           ? _value.winnerId
           : winnerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       auctionEnd: auctionEnd == freezed
           ? _value.auctionEnd
           : auctionEnd // ignore: cast_nullable_to_non_nullable
@@ -145,7 +145,7 @@ abstract class _$$_StickerAuctionModelCopyWith<$Res>
       String ownerLocation,
       List<StickerModel> exchangeables,
       double bestPrice,
-      String winnerId,
+      String? winnerId,
       DateTime auctionEnd,
       DateTime auctionStart,
       List<BidModel> bids});
@@ -206,7 +206,7 @@ class __$$_StickerAuctionModelCopyWithImpl<$Res>
       winnerId: winnerId == freezed
           ? _value.winnerId
           : winnerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       auctionEnd: auctionEnd == freezed
           ? _value.auctionEnd
           : auctionEnd // ignore: cast_nullable_to_non_nullable
@@ -262,7 +262,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
   @override
   final double bestPrice;
   @override
-  final String winnerId;
+  final String? winnerId;
   @override
   final DateTime auctionEnd;
   @override
@@ -337,7 +337,7 @@ abstract class _StickerAuctionModel implements StickerAuctionModel {
       required final String ownerLocation,
       required final List<StickerModel> exchangeables,
       required final double bestPrice,
-      required final String winnerId,
+      required final String? winnerId,
       required final DateTime auctionEnd,
       required final DateTime auctionStart,
       required final List<BidModel> bids}) = _$_StickerAuctionModel;
@@ -358,7 +358,7 @@ abstract class _StickerAuctionModel implements StickerAuctionModel {
   @override
   double get bestPrice;
   @override
-  String get winnerId;
+  String? get winnerId;
   @override
   DateTime get auctionEnd;
   @override

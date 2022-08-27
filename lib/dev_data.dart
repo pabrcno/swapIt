@@ -1,5 +1,11 @@
 const data = [
   {
+    "id": "1",
+    "owner": "1",
+    "bestPrice": 100,
+    "auctionEnd": "2022-09-01T00:00:00.000Z",
+    "auctionStart": "2022-09-01T00:00:00.000Z",
+    "bids": [],
     "sticker": {
       "id": 'CRO10',
       "name": 'Luka Modric',
@@ -48,6 +54,12 @@ const data = [
     "price": 10,
   },
   {
+    "id": "1",
+    "owner": "1",
+    "bestPrice": 100,
+    "auctionEnd": "2022-09-01T00:00:00.000Z",
+    "auctionStart": "2022-09-01T00:00:00.000Z",
+    "bids": [],
     "sticker": {
       "id": 'ARG10',
       "name": 'Rodrigo De Paul',
@@ -72,6 +84,12 @@ const data = [
     "price": 10,
   },
   {
+    "id": "1",
+    "owner": "1",
+    "bestPrice": 100,
+    "auctionEnd": "2022-09-01T00:00:00.000Z",
+    "auctionStart": "2022-09-01T00:00:00.000Z",
+    "bids": [],
     "sticker": {
       "id": 'BRA20',
       "name": 'Vinicius Junior',

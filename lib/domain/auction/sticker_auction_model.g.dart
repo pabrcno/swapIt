@@ -17,7 +17,7 @@ _$_StickerAuctionModel _$$_StickerAuctionModelFromJson(
           .map((e) => StickerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       bestPrice: (json['bestPrice'] as num).toDouble(),
-      winnerId: json['winnerId'] as String,
+      winnerId: json['winnerId'] as String?,
       auctionEnd: DateTime.parse(json['auctionEnd'] as String),
       auctionStart: DateTime.parse(json['auctionStart'] as String),
       bids: (json['bids'] as List<dynamic>)

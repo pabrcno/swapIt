@@ -15,7 +15,7 @@ class StickerAuctionModel with _$StickerAuctionModel {
     required String ownerLocation,
     required List<StickerModel> exchangeables,
     required double bestPrice,
-    required String winnerId,
+    required String? winnerId,
     required DateTime auctionEnd,
     required DateTime auctionStart,
     required List<BidModel> bids,

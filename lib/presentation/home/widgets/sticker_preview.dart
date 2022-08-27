@@ -1,10 +1,34 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-import '../../../domain/sticker/sticker_preview_model.dart';
+import '../../../domain/auction/sticker_auction_model.dart';
 
-class StickerPreview extends StatelessWidget {
-  final StickerPreviewModel previewData;
+class StickerPreview extends StatefulWidget {
+  final StickerAuctionModel previewData;
   const StickerPreview({Key? key, required this.previewData}) : super(key: key);
+
+  @override
+  State<StickerPreview> createState() => _StickerPreviewState();
+}
+
+class _StickerPreviewState extends State<StickerPreview> {
+  // time left to auction end
+  Duration timeLeft = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // sets first value
+
+    // defines a timer
+    Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      setState(() {
+        timeLeft = widget.previewData.auctionEnd.difference(DateTime.now());
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +42,7 @@ class StickerPreview extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Image.network(previewData.sticker.imageUrl),
+                child: Image.network(widget.previewData.sticker.imageUrl),
               ),
             ),
             Expanded(
@@ -33,15 +57,15 @@ class StickerPreview extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            "${previewData.sticker.name} #${previewData.sticker.id}",
+                            "${widget.previewData.sticker.name} #${widget.previewData.sticker.id}",
                             style: const TextStyle(
                               fontSize: 15,
                             ),
                           ),
                         ),
-                        const Text(
-                          "20m 45s",
-                          style: TextStyle(
+                        Text(
+                          "${timeLeft.inHours}h ${timeLeft.inMinutes.remainder(60)}m ${timeLeft.inSeconds.remainder(60)}s",
+                          style: const TextStyle(
                             fontSize: 12,
                           ),
                         ),
@@ -51,22 +75,22 @@ class StickerPreview extends StatelessWidget {
                     const SizedBox(height: 5),
 
                     Text(
-                      previewData.ownerLocation,
+                      widget.previewData.ownerLocation,
                       style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
                     const SizedBox(height: 10),
 
                     Expanded(
                       child: ListView.separated(
-                        itemCount: previewData.exchangeables.length,
+                        itemCount: widget.previewData.exchangeables.length,
                         scrollDirection: Axis.horizontal,
                         separatorBuilder: (context, index) => const SizedBox(
                           width: 10,
                         ),
                         itemBuilder: (context, index) {
                           return SizedBox(
-                            child: Image.network(
-                                previewData.exchangeables[index].imageUrl),
+                            child: Image.network(widget
+                                .previewData.exchangeables[index].imageUrl),
                           );
                         },
                       ),
@@ -78,15 +102,15 @@ class StickerPreview extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\$ ${previewData.price}",
+                          "\$ ${widget.previewData.bestPrice}",
                           style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const Text(
-                          'Bids 4',
-                          style: TextStyle(
+                        Text(
+                          'Bids ${widget.previewData.bids.length}',
+                          style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
                           ),

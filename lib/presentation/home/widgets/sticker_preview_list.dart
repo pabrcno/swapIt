@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/sticker/sticker_preview_model.dart';
+import '../../../domain/auction/sticker_auction_model.dart';
+
 import 'sticker_preview.dart';
 
 class StickerPreviewList extends StatelessWidget {
-  final List<StickerPreviewModel> previews;
-  const StickerPreviewList({Key? key, required this.previews})
+  final List<StickerAuctionModel> auctions;
+  const StickerPreviewList({Key? key, required this.auctions})
       : super(key: key);
 
   @override
@@ -13,12 +14,12 @@ class StickerPreviewList extends StatelessWidget {
     return Card(
         margin: const EdgeInsets.only(left: 5, right: 5, top: 20),
         child: ListView.separated(
-          itemCount: previews.length,
+          itemCount: auctions.length,
           separatorBuilder: (context, index) => const SizedBox(
             height: 30,
           ),
           itemBuilder: (context, index) {
-            return StickerPreview(previewData: previews[index]);
+            return StickerPreview(previewData: auctions[index]);
           },
         ));
   }
