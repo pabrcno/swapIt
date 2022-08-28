@@ -21,7 +21,7 @@ class ActionButton extends StatelessWidget {
         0,
       ),
       elevation: 2,
-      color: Colors.blue,
+      color: Colors.green[700],
       onPressed: onPressed,
       child: Text(title,
           style: const TextStyle(fontSize: 18, color: Colors.white)),

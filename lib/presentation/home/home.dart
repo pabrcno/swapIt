@@ -13,7 +13,15 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SwapIt'),
+        title: const Text('Auctions'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Get.to(() => NewAuctionScreen());
+            },
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
       body: StickerPreviewList(
         auctions: data.map((e) => StickerAuctionModel.fromJson(e)).toList(),

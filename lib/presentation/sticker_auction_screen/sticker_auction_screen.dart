@@ -57,9 +57,30 @@ class StickerAuctionScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      Chronometer(
-                          endTime: auction.auctionEnd,
-                          textStyle: const TextStyle(fontSize: 16)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Chronometer(
+                              endTime: auction.auctionEnd,
+                              textStyle: const TextStyle(fontSize: 16)),
+                          SizedBox(
+                            child: Row(children: [
+                              const Icon(
+                                Icons.location_on,
+                                size: 16,
+                                color: Colors.grey,
+                              ),
+                              Text(
+                                auction.ownerLocation,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ]),
+                          ),
+                        ],
+                      ),
                       const SizedBox(
                         height: 10,
                       ),

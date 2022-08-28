@@ -23,10 +23,10 @@ class App extends StatelessWidget {
             letterSpacing: 1.2,
           ),
         ),
-        floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Colors.blue,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.green[700],
           foregroundColor: Colors.white,
-          sizeConstraints: BoxConstraints.tightFor(
+          sizeConstraints: const BoxConstraints.tightFor(
             width: 65,
             height: 65,
           ),
