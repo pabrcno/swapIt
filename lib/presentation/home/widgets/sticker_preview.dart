@@ -1,8 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:swapit/presentation/widgets/exchanges_list_view.dart';
 
 import '../../../domain/auction/sticker_auction_model.dart';
+import '../../sticker_auction_screen/sticker_auction_screen.dart';
 
 class StickerPreview extends StatefulWidget {
   final StickerAuctionModel previewData;
@@ -23,16 +24,20 @@ class _StickerPreviewState extends State<StickerPreview> {
     // sets first value
 
     // defines a timer
-    Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      setState(() {
-        timeLeft = widget.previewData.auctionEnd.difference(DateTime.now());
-      });
-    });
+    // Timer.periodic(const Duration(seconds: 1), (Timer t) {
+    //   setState(() {
+    //     timeLeft = widget.previewData.auctionEnd.difference(DateTime.now());
+    //   });
+    //   print("calling");
+    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return InkWell(
+      onTap: () =>
+          Get.to(() => StickerAuctionScreen(auction: widget.previewData)),
+      child: SizedBox(
         height: 140,
         width: double.infinity,
         child: Row(
@@ -80,21 +85,8 @@ class _StickerPreviewState extends State<StickerPreview> {
                     ),
                     const SizedBox(height: 10),
 
-                    Expanded(
-                      child: ListView.separated(
-                        itemCount: widget.previewData.exchangeables.length,
-                        scrollDirection: Axis.horizontal,
-                        separatorBuilder: (context, index) => const SizedBox(
-                          width: 10,
-                        ),
-                        itemBuilder: (context, index) {
-                          return SizedBox(
-                            child: Image.network(widget
-                                .previewData.exchangeables[index].imageUrl),
-                          );
-                        },
-                      ),
-                    ),
+                    ExchangesListView(
+                        exchanges: widget.previewData.exchangeables),
                     const SizedBox(height: 10),
                     // align to the right
                     // row with price and time left to exchange
@@ -122,6 +114,8 @@ class _StickerPreviewState extends State<StickerPreview> {
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }

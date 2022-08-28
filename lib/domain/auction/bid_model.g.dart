@@ -12,7 +12,7 @@ _$_BidModel _$$_BidModelFromJson(Map<String, dynamic> json) => _$_BidModel(
       exchanges: (json['exchanges'] as List<dynamic>)
           .map((e) => StickerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      price: (json['price'] as num).toDouble(),
+      amount: (json['amount'] as num).toDouble(),
       bidTime: DateTime.parse(json['bidTime'] as String),
     );
 
@@ -21,6 +21,6 @@ Map<String, dynamic> _$$_BidModelToJson(_$_BidModel instance) =>
       'id': instance.id,
       'bidderId': instance.bidderId,
       'exchanges': instance.exchanges.map((e) => e.toJson()).toList(),
-      'price': instance.price,
+      'amount': instance.amount,
       'bidTime': instance.bidTime.toIso8601String(),
     };

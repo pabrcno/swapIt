@@ -23,7 +23,7 @@ mixin _$BidModel {
   String get id => throw _privateConstructorUsedError;
   String get bidderId => throw _privateConstructorUsedError;
   List<StickerModel> get exchanges => throw _privateConstructorUsedError;
-  double get price => throw _privateConstructorUsedError;
+  double get amount => throw _privateConstructorUsedError;
   DateTime get bidTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +40,7 @@ abstract class $BidModelCopyWith<$Res> {
       {String id,
       String bidderId,
       List<StickerModel> exchanges,
-      double price,
+      double amount,
       DateTime bidTime});
 }
 
@@ -57,7 +57,7 @@ class _$BidModelCopyWithImpl<$Res> implements $BidModelCopyWith<$Res> {
     Object? id = freezed,
     Object? bidderId = freezed,
     Object? exchanges = freezed,
-    Object? price = freezed,
+    Object? amount = freezed,
     Object? bidTime = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,9 +73,9 @@ class _$BidModelCopyWithImpl<$Res> implements $BidModelCopyWith<$Res> {
           ? _value.exchanges
           : exchanges // ignore: cast_nullable_to_non_nullable
               as List<StickerModel>,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as double,
       bidTime: bidTime == freezed
           ? _value.bidTime
@@ -95,7 +95,7 @@ abstract class _$$_BidModelCopyWith<$Res> implements $BidModelCopyWith<$Res> {
       {String id,
       String bidderId,
       List<StickerModel> exchanges,
-      double price,
+      double amount,
       DateTime bidTime});
 }
 
@@ -114,7 +114,7 @@ class __$$_BidModelCopyWithImpl<$Res> extends _$BidModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? bidderId = freezed,
     Object? exchanges = freezed,
-    Object? price = freezed,
+    Object? amount = freezed,
     Object? bidTime = freezed,
   }) {
     return _then(_$_BidModel(
@@ -130,9 +130,9 @@ class __$$_BidModelCopyWithImpl<$Res> extends _$BidModelCopyWithImpl<$Res>
           ? _value._exchanges
           : exchanges // ignore: cast_nullable_to_non_nullable
               as List<StickerModel>,
-      price: price == freezed
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
+      amount: amount == freezed
+          ? _value.amount
+          : amount // ignore: cast_nullable_to_non_nullable
               as double,
       bidTime: bidTime == freezed
           ? _value.bidTime
@@ -150,7 +150,7 @@ class _$_BidModel implements _BidModel {
       {required this.id,
       required this.bidderId,
       required final List<StickerModel> exchanges,
-      required this.price,
+      required this.amount,
       required this.bidTime})
       : _exchanges = exchanges;
 
@@ -169,13 +169,13 @@ class _$_BidModel implements _BidModel {
   }
 
   @override
-  final double price;
+  final double amount;
   @override
   final DateTime bidTime;
 
   @override
   String toString() {
-    return 'BidModel(id: $id, bidderId: $bidderId, exchanges: $exchanges, price: $price, bidTime: $bidTime)';
+    return 'BidModel(id: $id, bidderId: $bidderId, exchanges: $exchanges, amount: $amount, bidTime: $bidTime)';
   }
 
   @override
@@ -187,7 +187,7 @@ class _$_BidModel implements _BidModel {
             const DeepCollectionEquality().equals(other.bidderId, bidderId) &&
             const DeepCollectionEquality()
                 .equals(other._exchanges, _exchanges) &&
-            const DeepCollectionEquality().equals(other.price, price) &&
+            const DeepCollectionEquality().equals(other.amount, amount) &&
             const DeepCollectionEquality().equals(other.bidTime, bidTime));
   }
 
@@ -198,7 +198,7 @@ class _$_BidModel implements _BidModel {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(bidderId),
       const DeepCollectionEquality().hash(_exchanges),
-      const DeepCollectionEquality().hash(price),
+      const DeepCollectionEquality().hash(amount),
       const DeepCollectionEquality().hash(bidTime));
 
   @JsonKey(ignore: true)
@@ -219,7 +219,7 @@ abstract class _BidModel implements BidModel {
       {required final String id,
       required final String bidderId,
       required final List<StickerModel> exchanges,
-      required final double price,
+      required final double amount,
       required final DateTime bidTime}) = _$_BidModel;
 
   factory _BidModel.fromJson(Map<String, dynamic> json) = _$_BidModel.fromJson;
@@ -231,7 +231,7 @@ abstract class _BidModel implements BidModel {
   @override
   List<StickerModel> get exchanges;
   @override
-  double get price;
+  double get amount;
   @override
   DateTime get bidTime;
   @override

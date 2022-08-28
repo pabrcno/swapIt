@@ -10,7 +10,7 @@ class BidModel with _$BidModel {
     required String id,
     required String bidderId,
     required List<StickerModel> exchanges,
-    required double price,
+    required double amount,
     required DateTime bidTime,
   }) = _BidModel;
 
