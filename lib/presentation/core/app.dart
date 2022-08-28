@@ -17,9 +17,10 @@ class App extends StatelessWidget {
           backgroundColor: Color.fromRGBO(20, 20, 20, 1),
           titleTextStyle: TextStyle(
             color: Colors.white,
-            fontSize: 23,
+            fontSize: 30,
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,
+            letterSpacing: 1.2,
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -28,6 +29,7 @@ class App extends StatelessWidget {
           elevation: 0,
         ),
       ),
+      debugShowCheckedModeBanner: false,
       home: const Home(),
     );
   }
