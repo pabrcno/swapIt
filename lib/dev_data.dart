@@ -194,6 +194,46 @@ const data = [
         ],
         "bidderId": "1",
         "bidTime": "2022-08-14T00:00:00.000Z",
+      },
+      {
+        "id": '3',
+        "amount": 300,
+        "exchanges": [
+          {
+            "id": 'CRO10',
+            "name": 'Luka Modric',
+            "imageUrl":
+                'https://http2.mlstatic.com/D_NQ_NP_999297-MLA51298523236_082022-O.webp',
+          },
+          {
+            "id": 'ARG10',
+            "name": 'Rodrigo De Paul',
+            "imageUrl":
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxZHp2aZ-ZWk08P_0T_uem-wcnzjIalN9yZKkJCQQ-aBDybhGIMp7jcpb4CP8SUtfepIqw5fqyL5xfpcfpkq7mDzPUqS5d2ujb2av6ElR9-wh7TYSeN46nMvnZLsOqC2XaFsRoYVn4YWZlidg_vXLZrMDDKWe8yUrlmVchcrT8-Wo7qbZ5rY4Izqvy/s768/black-rod.jpg',
+          },
+        ],
+        "bidderId": "2",
+        "bidTime": "2022-08-14T00:00:00.000Z",
+      },
+      {
+        "id": '4',
+        "amount": 200,
+        "exchanges": [
+          {
+            "id": 'CRO10',
+            "name": 'Luka Modric',
+            "imageUrl":
+                'https://http2.mlstatic.com/D_NQ_NP_999297-MLA51298523236_082022-O.webp',
+          },
+          {
+            "id": 'ARG10',
+            "name": 'Rodrigo De Paul',
+            "imageUrl":
+                'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxZHp2aZ-ZWk08P_0T_uem-wcnzjIalN9yZKkJCQQ-aBDybhGIMp7jcpb4CP8SUtfepIqw5fqyL5xfpcfpkq7mDzPUqS5d2ujb2av6ElR9-wh7TYSeN46nMvnZLsOqC2XaFsRoYVn4YWZlidg_vXLZrMDDKWe8yUrlmVchcrT8-Wo7qbZ5rY4Izqvy/s768/black-rod.jpg',
+          },
+        ],
+        "bidderId": "3",
+        "bidTime": "2022-08-14T00:00:00.000Z",
       }
     ],
     "sticker": {
