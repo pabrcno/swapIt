@@ -38,7 +38,7 @@ class _StickerPreviewState extends State<StickerPreview> {
       onTap: () =>
           Get.to(() => StickerAuctionScreen(auction: widget.previewData)),
       child: SizedBox(
-        height: 180,
+        height: 125,
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
