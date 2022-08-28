@@ -52,19 +52,20 @@ class NewAuctionScreen extends StatelessWidget {
 
               CityPicker(),
               const SizedBox(height: 20),
-              const SearchBar(
-                placeHolder: "Add Exchanges",
-              ),
-              const SizedBox(height: 20),
               SizedBox(
-                height: 150,
-                width: double.infinity,
-                child: ExchangesListView(
-                  exchanges: data
-                      .map((e) => StickerModel.fromJson(
-                          e["sticker"] as Map<String, dynamic>))
-                      .toList(),
-                ),
+                height: 250,
+                child: Column(children: [
+                  const SearchBar(
+                    placeHolder: "Add Exchanges",
+                  ),
+                  const SizedBox(height: 20),
+                  ExchangesListView(
+                    exchanges: data
+                        .map((e) => StickerModel.fromJson(
+                            e["sticker"] as Map<String, dynamic>))
+                        .toList(),
+                  ),
+                ]),
               ),
 
               const SizedBox(height: 20),
