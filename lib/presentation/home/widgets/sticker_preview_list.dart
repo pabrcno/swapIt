@@ -16,7 +16,7 @@ class StickerPreviewList extends StatelessWidget {
       child: ListView.separated(
         itemCount: auctions.length,
         separatorBuilder: (context, index) => const SizedBox(
-          height: 30,
+          height: 36,
         ),
         itemBuilder: (context, index) {
           return StickerPreview(previewData: auctions[index]);

@@ -70,20 +70,15 @@ class _StickerPreviewState extends State<StickerPreview> {
                         ),
                       ],
                     ),
-
-                    const SizedBox(height: 10),
-
+                    const SizedBox(height: 7),
                     Text(
                       widget.previewData.ownerLocation,
                       style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
-                    const SizedBox(height: 20),
-
+                    const SizedBox(height: 14),
                     ExchangesListView(
                         exchanges: widget.previewData.exchangeables),
-                    const SizedBox(height: 20),
-                    // align to the right
-                    // row with price and time left to exchange
+                    const SizedBox(height: 14),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
