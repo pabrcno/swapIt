@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/presentation/sticker_auction_screen/widgets/bid_tile.dart';
+import 'package:swapit/presentation/widgets/chronometer.dart';
 
 import '../widgets/exchanges_list_view.dart';
 
@@ -36,7 +37,6 @@ class StickerAuctionScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              // card with the current price and the time left and a button to bid
               Card(
                 elevation: 0,
                 child: Container(
@@ -55,12 +55,9 @@ class StickerAuctionScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
-                        "00h 00m 00s",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
+                      Chronometer(
+                          endTime: auction.auctionEnd,
+                          textStyle: const TextStyle(fontSize: 16)),
                       const SizedBox(
                         height: 10,
                       ),
@@ -90,7 +87,6 @@ class StickerAuctionScreen extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              // card showing exachangeListView
               Card(
                 elevation: 0,
                 child: Container(
@@ -121,11 +117,9 @@ class StickerAuctionScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               const SizedBox(
                 height: 20,
               ),
-
               Text(
                 auction.bids.isEmpty ? "" : "Bids",
                 style:
