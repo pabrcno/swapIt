@@ -111,6 +111,7 @@ class StickerAuctionScreen extends StatelessWidget {
                       ),
                       SizedBox(
                         height: 150,
+                        width: MediaQuery.of(context).size.width,
                         child: ExchangesListView(
                           exchanges: auction.exchangeables,
                         ),
