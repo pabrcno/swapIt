@@ -58,35 +58,33 @@ class _StickerPreviewState extends State<StickerPreview> {
                           child: Text(
                             "${widget.previewData.sticker.name} #${widget.previewData.sticker.id}",
                             style: const TextStyle(
-                              fontSize: 15,
+                              fontSize: 14,
                             ),
                           ),
                         ),
                         Text(
                           "${timeLeft.inHours}h ${timeLeft.inMinutes.remainder(60)}m ${timeLeft.inSeconds.remainder(60)}s",
-                          style: const TextStyle(
-                            fontSize: 12,
-                          ),
+                          style:
+                              const TextStyle(fontSize: 12, color: Colors.grey),
                         ),
                       ],
                     ),
                     const SizedBox(height: 7),
                     Text(
                       widget.previewData.ownerLocation,
-                      style: const TextStyle(fontSize: 14, color: Colors.grey),
+                      style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 12),
                     ExchangesListView(
                         exchanges: widget.previewData.exchangeables),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "\$ ${widget.previewData.bestPrice}",
                           style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
                           ),
                         ),
                         Text(

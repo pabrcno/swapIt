@@ -11,17 +11,23 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'SwapIt',
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-        elevation: 0,
-        toolbarHeight: 60,
-        backgroundColor: Color.fromRGBO(20, 20, 20, 1),
-        titleTextStyle: TextStyle(
-          color: Colors.white,
-          fontSize: 23,
-          fontWeight: FontWeight.bold,
-          fontStyle: FontStyle.italic,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          toolbarHeight: 60,
+          backgroundColor: Color.fromRGBO(20, 20, 20, 1),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            fontStyle: FontStyle.italic,
+          ),
         ),
-      )),
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Color.fromRGBO(20, 20, 20, 1),
+          foregroundColor: Colors.white,
+          elevation: 0,
+        ),
+      ),
       home: const Home(),
     );
   }

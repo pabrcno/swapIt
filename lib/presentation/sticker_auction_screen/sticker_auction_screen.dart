@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/presentation/sticker_auction_screen/widgets/bid_tile.dart';
 
+import '../widgets/exchanges_list_view.dart';
+
 class StickerAuctionScreen extends StatelessWidget {
   final StickerAuctionModel auction;
   const StickerAuctionScreen({Key? key, required this.auction})
@@ -54,10 +56,9 @@ class StickerAuctionScreen extends StatelessWidget {
                         height: 10,
                       ),
                       const Text(
-                        "00:00:00",
+                        "00h 00m 00s",
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
                       ),
                       const SizedBox(
@@ -86,6 +87,41 @@ class StickerAuctionScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
+              // card showing exachangeListView
+              Card(
+                elevation: 0,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Exchange for",
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SizedBox(
+                        height: 150,
+                        child: ExchangesListView(
+                          exchanges: auction.exchangeables,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+
               const SizedBox(
                 height: 20,
               ),

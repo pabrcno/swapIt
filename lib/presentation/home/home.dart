@@ -10,11 +10,16 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('SwapIt'),
-        ),
-        body: StickerPreviewList(
-          auctions: data.map((e) => StickerAuctionModel.fromJson(e)).toList(),
-        ));
+      appBar: AppBar(
+        title: const Text('SwapIt'),
+      ),
+      body: StickerPreviewList(
+        auctions: data.map((e) => StickerAuctionModel.fromJson(e)).toList(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 }
