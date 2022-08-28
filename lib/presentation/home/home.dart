@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:swapit/presentation/home/widgets/sticker_preview_list.dart';
+import 'package:swapit/presentation/new_auction_screen/new_auction_screen.dart';
 
 import '../../dev_data.dart';
 import '../../domain/auction/sticker_auction_model.dart';
@@ -17,7 +19,9 @@ class Home extends StatelessWidget {
         auctions: data.map((e) => StickerAuctionModel.fromJson(e)).toList(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => NewAuctionScreen());
+        },
         child: const Icon(Icons.add),
       ),
     );

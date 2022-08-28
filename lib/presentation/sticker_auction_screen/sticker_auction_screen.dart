@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/presentation/core/constants.dart';
+import 'package:swapit/presentation/core/widgets/action_button.dart';
 import 'package:swapit/presentation/sticker_auction_screen/widgets/bid_tile.dart';
 
 import '../core/widgets/chronometer.dart';
@@ -62,25 +63,7 @@ class StickerAuctionScreen extends StatelessWidget {
                       const SizedBox(
                         height: 10,
                       ),
-                      MaterialButton(
-                        minWidth: double.infinity,
-                        height: 50,
-                        shape: ShapeBorder.lerp(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          0,
-                        ),
-                        elevation: 2,
-                        color: Colors.blue,
-                        onPressed: () {},
-                        child: const Text("Bid",
-                            style:
-                                TextStyle(fontSize: 18, color: Colors.white)),
-                      ),
+                      ActionButton(title: "Bid", onPressed: () {})
                     ],
                   ),
                 ),

@@ -24,8 +24,12 @@ class App extends StatelessWidget {
           ),
         ),
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
-          backgroundColor: Color.fromRGBO(20, 20, 20, 1),
+          backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
+          sizeConstraints: BoxConstraints.tightFor(
+            width: 65,
+            height: 65,
+          ),
           elevation: 0,
         ),
       ),
