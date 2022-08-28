@@ -48,7 +48,7 @@ class _StickerPreviewState extends State<StickerPreview> {
             ),
             Expanded(
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
