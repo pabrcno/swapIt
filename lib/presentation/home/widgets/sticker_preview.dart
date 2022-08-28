@@ -38,26 +38,20 @@ class _StickerPreviewState extends State<StickerPreview> {
       onTap: () =>
           Get.to(() => StickerAuctionScreen(auction: widget.previewData)),
       child: SizedBox(
-        height: 140,
+        height: 180,
         width: double.infinity,
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Image.network(widget.previewData.sticker.imageUrl),
-              ),
+            SizedBox(
+              child: Image.network(widget.previewData.sticker.imageUrl),
             ),
             Expanded(
-              flex: 2,
               child: Container(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //Row with title and time left
                     Row(
                       children: [
                         Expanded(
@@ -77,17 +71,17 @@ class _StickerPreviewState extends State<StickerPreview> {
                       ],
                     ),
 
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 10),
 
                     Text(
                       widget.previewData.ownerLocation,
                       style: const TextStyle(fontSize: 14, color: Colors.grey),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
 
                     ExchangesListView(
                         exchanges: widget.previewData.exchangeables),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     // align to the right
                     // row with price and time left to exchange
                     Row(
