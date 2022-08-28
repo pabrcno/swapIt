@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
+import 'package:swapit/presentation/core/constants.dart';
 import 'package:swapit/presentation/sticker_auction_screen/widgets/bid_tile.dart';
-import 'package:swapit/presentation/widgets/chronometer.dart';
 
-import '../widgets/exchanges_list_view.dart';
+import '../core/widgets/chronometer.dart';
+import '../core/widgets/exchanges_list_view.dart';
 
 class StickerAuctionScreen extends StatelessWidget {
   final StickerAuctionModel auction;
@@ -19,7 +20,7 @@ class StickerAuctionScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(screenPadding),
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: SingleChildScrollView(

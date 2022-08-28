@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swapit/domain/auction/bid_model.dart';
 
-import '../../widgets/exchanges_list_view.dart';
+import '../../core/widgets/exchanges_list_view.dart';
 
 class BidTile extends StatelessWidget {
   final BidModel bid;

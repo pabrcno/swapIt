@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swapit/presentation/widgets/chronometer.dart';
-import 'package:swapit/presentation/widgets/exchanges_list_view.dart';
 
 import '../../../domain/auction/sticker_auction_model.dart';
+import '../../core/widgets/chronometer.dart';
+import '../../core/widgets/exchanges_list_view.dart';
 import '../../sticker_auction_screen/sticker_auction_screen.dart';
 
 class StickerPreview extends StatelessWidget {
