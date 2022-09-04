@@ -16,6 +16,9 @@ class NewAuctionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text('New Auction'),
+        ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(screenPadding),
           child: Column(
@@ -25,25 +28,20 @@ class NewAuctionScreen extends StatelessWidget {
                 placeHolder: "Add a sticker for auction",
               ),
               const SizedBox(height: 20),
-              Row(
-                children: [
-                  Image.network(
-                    StickerModel.fromJson(
-                            data[0]["sticker"] as Map<String, dynamic>)
-                        .imageUrl,
-                    height: 200,
-                  ),
-                  const SizedBox(width: 20),
-                  const Text("Luka Modric #CRO10",
-                      style: TextStyle(fontSize: 18)),
-                ],
+              Center(
+                child: Image.network(
+                  StickerModel.fromJson(
+                          data[0]["sticker"] as Map<String, dynamic>)
+                      .imageUrl,
+                  height: 220,
+                ),
               ),
 
               const SizedBox(height: 20),
               // card with title initial price and an number input
               Container(
                 padding: const EdgeInsets.all(10),
-                color: Colors.grey[700],
+                color: Colors.grey[900],
                 width: double.infinity,
                 child: const Center(
                     child: Text("Select your city",
