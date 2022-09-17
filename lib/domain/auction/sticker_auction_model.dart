@@ -10,7 +10,7 @@ class StickerAuctionModel with _$StickerAuctionModel {
   @JsonSerializable(explicitToJson: true)
   const factory StickerAuctionModel({
     required String id,
-    required String owner,
+    required String ownerId,
     required StickerModel sticker,
     required String ownerLocation,
     required List<StickerModel> exchangeables,

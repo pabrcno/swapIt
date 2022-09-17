@@ -21,7 +21,7 @@ StickerAuctionModel _$StickerAuctionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StickerAuctionModel {
   String get id => throw _privateConstructorUsedError;
-  String get owner => throw _privateConstructorUsedError;
+  String get ownerId => throw _privateConstructorUsedError;
   StickerModel get sticker => throw _privateConstructorUsedError;
   String get ownerLocation => throw _privateConstructorUsedError;
   List<StickerModel> get exchangeables => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $StickerAuctionModelCopyWith<$Res> {
       _$StickerAuctionModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String owner,
+      String ownerId,
       StickerModel sticker,
       String ownerLocation,
       List<StickerModel> exchangeables,
@@ -69,7 +69,7 @@ class _$StickerAuctionModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? owner = freezed,
+    Object? ownerId = freezed,
     Object? sticker = freezed,
     Object? ownerLocation = freezed,
     Object? exchangeables = freezed,
@@ -84,9 +84,9 @@ class _$StickerAuctionModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      owner: owner == freezed
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
               as String,
       sticker: sticker == freezed
           ? _value.sticker
@@ -140,7 +140,7 @@ abstract class _$$_StickerAuctionModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String owner,
+      String ownerId,
       StickerModel sticker,
       String ownerLocation,
       List<StickerModel> exchangeables,
@@ -168,7 +168,7 @@ class __$$_StickerAuctionModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? owner = freezed,
+    Object? ownerId = freezed,
     Object? sticker = freezed,
     Object? ownerLocation = freezed,
     Object? exchangeables = freezed,
@@ -183,9 +183,9 @@ class __$$_StickerAuctionModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      owner: owner == freezed
-          ? _value.owner
-          : owner // ignore: cast_nullable_to_non_nullable
+      ownerId: ownerId == freezed
+          ? _value.ownerId
+          : ownerId // ignore: cast_nullable_to_non_nullable
               as String,
       sticker: sticker == freezed
           ? _value.sticker
@@ -229,7 +229,7 @@ class __$$_StickerAuctionModelCopyWithImpl<$Res>
 class _$_StickerAuctionModel implements _StickerAuctionModel {
   const _$_StickerAuctionModel(
       {required this.id,
-      required this.owner,
+      required this.ownerId,
       required this.sticker,
       required this.ownerLocation,
       required final List<StickerModel> exchangeables,
@@ -247,7 +247,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
   @override
   final String id;
   @override
-  final String owner;
+  final String ownerId;
   @override
   final StickerModel sticker;
   @override
@@ -276,7 +276,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
 
   @override
   String toString() {
-    return 'StickerAuctionModel(id: $id, owner: $owner, sticker: $sticker, ownerLocation: $ownerLocation, exchangeables: $exchangeables, bestPrice: $bestPrice, winnerId: $winnerId, auctionEnd: $auctionEnd, auctionStart: $auctionStart, bids: $bids)';
+    return 'StickerAuctionModel(id: $id, ownerId: $ownerId, sticker: $sticker, ownerLocation: $ownerLocation, exchangeables: $exchangeables, bestPrice: $bestPrice, winnerId: $winnerId, auctionEnd: $auctionEnd, auctionStart: $auctionStart, bids: $bids)';
   }
 
   @override
@@ -285,7 +285,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
         (other.runtimeType == runtimeType &&
             other is _$_StickerAuctionModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.owner, owner) &&
+            const DeepCollectionEquality().equals(other.ownerId, ownerId) &&
             const DeepCollectionEquality().equals(other.sticker, sticker) &&
             const DeepCollectionEquality()
                 .equals(other.ownerLocation, ownerLocation) &&
@@ -305,7 +305,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(owner),
+      const DeepCollectionEquality().hash(ownerId),
       const DeepCollectionEquality().hash(sticker),
       const DeepCollectionEquality().hash(ownerLocation),
       const DeepCollectionEquality().hash(_exchangeables),
@@ -332,7 +332,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
 abstract class _StickerAuctionModel implements StickerAuctionModel {
   const factory _StickerAuctionModel(
       {required final String id,
-      required final String owner,
+      required final String ownerId,
       required final StickerModel sticker,
       required final String ownerLocation,
       required final List<StickerModel> exchangeables,
@@ -348,7 +348,7 @@ abstract class _StickerAuctionModel implements StickerAuctionModel {
   @override
   String get id;
   @override
-  String get owner;
+  String get ownerId;
   @override
   StickerModel get sticker;
   @override
