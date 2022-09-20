@@ -1,10 +1,12 @@
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:injectable/injectable.dart';
 import 'package:swapit/domain/auction/bid_model.dart';
 import 'package:swapit/domain/auction/auction_failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:swapit/domain/auction/i_auction_service.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 
+@LazySingleton(as: IAuctionService)
 class AuctionService implements IAuctionService {
   final _fbFunctions = FirebaseFunctions.instance;
   @override

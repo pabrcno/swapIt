@@ -38,11 +38,14 @@ dependencies:
   freezed: ^2.1.0+1
   freezed_annotation: ^2.1.0
   get: ^4.6.5
+  get_it: ^7.2.0
+  injectable: ^1.5.3
   json_annotation: ^4.6.0
   json_serializable: ^6.3.1
   paginated_search_bar: ^1.1.2
 
 dev_dependencies:
+  injectable_generator: ^1.5.4
   build_runner: ^2.2.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
