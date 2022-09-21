@@ -23,4 +23,17 @@ class StickerAuctionModel with _$StickerAuctionModel {
 
   factory StickerAuctionModel.fromJson(Map<String, dynamic> json) =>
       _$StickerAuctionModelFromJson(json);
+
+  factory StickerAuctionModel.empty() => StickerAuctionModel(
+        id: '',
+        ownerId: '',
+        sticker: StickerModel.empty(),
+        ownerLocation: '',
+        exchangeables: [],
+        bestPrice: 0,
+        winnerId: null,
+        auctionEnd: DateTime.now(),
+        auctionStart: DateTime.now(),
+        bids: [],
+      );
 }
