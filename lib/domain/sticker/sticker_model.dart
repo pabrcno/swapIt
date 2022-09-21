@@ -13,4 +13,10 @@ class StickerModel with _$StickerModel {
 
   factory StickerModel.fromJson(Map<String, dynamic> json) =>
       _$StickerModelFromJson(json);
+
+  factory StickerModel.empty() => const StickerModel(
+        id: '',
+        name: '',
+        imageUrl: '',
+      );
 }

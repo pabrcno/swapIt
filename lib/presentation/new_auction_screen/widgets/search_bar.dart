@@ -6,7 +6,10 @@ import '../../../dev_data.dart';
 
 class SearchBar extends StatefulWidget {
   final String placeHolder;
-  const SearchBar({Key? key, required this.placeHolder}) : super(key: key);
+  final Function(StickerModel) onStickerSelected;
+  const SearchBar(
+      {Key? key, required this.placeHolder, required this.onStickerSelected})
+      : super(key: key);
 
   @override
   State<SearchBar> createState() => _SearchBarState();
@@ -72,6 +75,7 @@ class _SearchBarState extends State<SearchBar> {
                       return StickerRecommendation(
                         stickerModel: item,
                         toggleSearchBar: () => setState(() {}),
+                        setSticker: widget.onStickerSelected,
                       );
                     },
                   ),
@@ -85,16 +89,23 @@ class _SearchBarState extends State<SearchBar> {
 class StickerRecommendation extends StatelessWidget {
   final StickerModel stickerModel;
   final Function toggleSearchBar;
+  final Function setSticker;
 
   const StickerRecommendation(
-      {Key? key, required this.stickerModel, required this.toggleSearchBar})
+      {Key? key,
+      required this.stickerModel,
+      required this.toggleSearchBar,
+      required this.setSticker})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        return;
+        return setSticker(StickerModel(
+            id: stickerModel.id,
+            name: stickerModel.name,
+            imageUrl: stickerModel.imageUrl));
       },
       child: Container(
         padding: const EdgeInsets.all(10),
@@ -112,8 +123,8 @@ class StickerRecommendationPager {
     this.pageSize = 20,
   });
 
-  List<StickerModel> nextBatch({required List<StickerModel> Stickeres}) {
-    List<StickerModel> batch = Stickeres.map((e) => e).toList();
+  List<StickerModel> nextBatch({required List<StickerModel> stickers}) {
+    List<StickerModel> batch = stickers.map((e) => e).toList();
     pageIndex += 1;
     return batch;
   }

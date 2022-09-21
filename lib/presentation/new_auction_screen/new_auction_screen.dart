@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:swapit/application/auction/sticker_auction_controller.dart';
+import 'package:swapit/injection.dart';
 import 'package:swapit/presentation/core/constants.dart';
 import 'package:swapit/presentation/core/widgets/exchanges_list_view.dart';
 import 'package:swapit/presentation/new_auction_screen/widgets/city_picker.dart';
@@ -9,6 +11,7 @@ import '../../dev_data.dart';
 import '../../domain/sticker/sticker_model.dart';
 
 class NewAuctionScreen extends StatelessWidget {
+  StickerAuctionController controller = getIt<StickerAuctionController>();
   final now = DateTime.now();
   NewAuctionScreen({Key? key}) : super(key: key);
 
@@ -24,8 +27,11 @@ class NewAuctionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SearchBar(
+              SearchBar(
                 placeHolder: "Add a sticker for auction",
+                onStickerSelected: (sticker) {
+                  controller.sticker = sticker;
+                },
               ),
               const SizedBox(height: 20),
               Center(
@@ -53,8 +59,9 @@ class NewAuctionScreen extends StatelessWidget {
               SizedBox(
                 height: 250,
                 child: Column(children: [
-                  const SearchBar(
+                  SearchBar(
                     placeHolder: "Add Exchanges",
+                    onStickerSelected: controller.addExchangeable,
                   ),
                   const SizedBox(height: 20),
                   ExchangesListView(

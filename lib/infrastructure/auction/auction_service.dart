@@ -112,4 +112,17 @@ class AuctionService implements IAuctionService {
       return left(const AuctionFailure.unexpected());
     }
   }
+
+  @override
+  Future<Either<AuctionFailure, StickerAuctionModel>> createAuction(
+      StickerAuctionModel auction) async {
+    try {
+      var res = await _fbFunctions
+          .httpsCallable('stickerAuctionFunctions-create')
+          .call(<String, dynamic>{'auction': auction.toJson()});
+      return right(res.data);
+    } on FirebaseFunctionsException {
+      return left(const AuctionFailure.unexpected());
+    }
+  }
 }

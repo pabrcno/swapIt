@@ -1,7 +1,7 @@
 const data = [
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -55,7 +55,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -85,7 +85,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -115,7 +115,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -169,7 +169,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -261,7 +261,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -291,7 +291,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -345,7 +345,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
@@ -375,7 +375,7 @@ const data = [
   },
   {
     "id": "1",
-    "owner": "1",
+    "ownerId": "1",
     "bestPrice": 100,
     "auctionEnd": "2022-09-01T00:00:00.000Z",
     "auctionStart": "2022-09-01T00:00:00.000Z",
