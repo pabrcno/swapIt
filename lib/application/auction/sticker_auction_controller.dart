@@ -27,12 +27,25 @@ class StickerAuctionController extends GetxController {
         exchangeables: [..._auction.value.exchangeables, exchangeable]);
   }
 
+  removeExchangeable(StickerModel exchangeable) {
+    _auction.value = _auction.value.copyWith(
+        exchangeables: _auction.value.exchangeables
+            .where((element) => element.id != exchangeable.id)
+            .toList());
+  }
+
+  get exchangeables => _auction.value.exchangeables;
+
   set auctionEnd(DateTime auctionEnd) {
     _auction.value = _auction.value.copyWith(auctionEnd: auctionEnd);
   }
 
   set auctionStart(DateTime auctionStart) {
     _auction.value = _auction.value.copyWith(auctionStart: DateTime.now());
+  }
+
+  set bestPrice(double bestPrice) {
+    _auction.value = _auction.value.copyWith(bestPrice: bestPrice);
   }
 
   createStickerAuction() async {
