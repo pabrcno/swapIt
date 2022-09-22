@@ -9,66 +9,58 @@ class BidTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        height: 140,
-        width: MediaQuery.of(context).size.width - 40,
-        child: Row(
-          children: [
-            Expanded(
-              flex: 2,
-              child: Container(
-                padding: const EdgeInsets.only(right: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      padding: const EdgeInsets.only(top: 10, right: 10),
+      height: 80,
+      width: MediaQuery.of(context).size.width - 80,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            "Bidder ${bid.bidderId}",
-                            style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                          ),
-                        ),
-                        Text(
-                          "\$ ${bid.amount}",
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      "Exchange Offer",
-                      style: TextStyle(
-                        fontSize: 16,
+                    Expanded(
+                      child: Text(
+                        "Bidder ${bid.bidderId}",
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.grey),
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    ExchangesListView(exchanges: bid.exchanges),
-                    const SizedBox(height: 10),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text(
-                        "${bid.bidTime.day}/${bid.bidTime.month}/${bid.bidTime.year}",
-                        style: const TextStyle(
-                          fontSize: 12,
-                        ),
+                    Text(
+                      "\$ ${bid.amount}",
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
-              ),
+                const SizedBox(height: 10),
+                const Text(
+                  "Exchange Offer",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                ExchangesListView(exchanges: bid.exchanges),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Text(
+                    "${bid.bidTime.day}/${bid.bidTime.month}/${bid.bidTime.year}",
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

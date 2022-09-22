@@ -29,6 +29,10 @@ class _SearchBarState extends State<SearchBar> {
           child: SizedBox(
             width: 600,
             child: PaginatedSearchBar<StickerModel>(
+              containerDecoration: const BoxDecoration(
+                color: Colors.transparent,
+              ),
+              itemPadding: 5,
               maxHeight: 300,
               hintText: widget.placeHolder,
               onSearch: ({
@@ -85,8 +89,9 @@ class StickerRecommendation extends StatelessWidget {
             imageUrl: stickerModel.imageUrl));
       },
       child: Container(
-        padding: const EdgeInsets.all(10),
-        child: Text("${stickerModel.name} #${stickerModel.id}"),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        child: Text("${stickerModel.name} #${stickerModel.id}",
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
       ),
     );
   }

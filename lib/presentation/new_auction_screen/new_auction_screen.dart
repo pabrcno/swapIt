@@ -8,6 +8,7 @@ import 'package:swapit/presentation/core/widgets/exchanges_list_view.dart';
 import 'package:swapit/presentation/new_auction_screen/widgets/search_bar.dart';
 
 import '../../domain/sticker/sticker_model.dart';
+import '../core/widgets/action_button.dart';
 
 class NewAuctionScreen extends StatelessWidget {
   final StickerAuctionController controller = getIt<StickerAuctionController>();
@@ -19,7 +20,25 @@ class NewAuctionScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('New Auction'),
+          title: Obx(
+            () => Text(
+              controller.sticker.id.isNotEmpty
+                  ? "${controller.sticker.name} - ${controller.sticker.id}"
+                  : "New Auction",
+            ),
+          ),
+          actions: [
+            Obx(() => controller.sticker.id.isNotEmpty
+                ? IconButton(
+                    icon: const Icon(Icons.clear),
+                    iconSize: 30,
+                    color: Colors.red[300],
+                    onPressed: () {
+                      controller.sticker = StickerModel.empty();
+                    },
+                  )
+                : const SizedBox()),
+          ],
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(screenPadding),
@@ -28,26 +47,7 @@ class NewAuctionScreen extends StatelessWidget {
             children: [
               Obx(
                 () => controller.sticker.id.isNotEmpty
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            child: Text(
-                                "${controller.sticker.name} - ${controller.sticker.id}",
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  overflow: TextOverflow.ellipsis,
-                                )),
-                          ),
-                          IconButton(
-                            icon: const Icon(Icons.clear),
-                            onPressed: () {
-                              controller.sticker = StickerModel.empty();
-                            },
-                          )
-                        ],
-                      )
+                    ? const SizedBox()
                     : SearchBar(
                         placeHolder: "Add a sticker for auction",
                         onStickerSelected: (sticker) {
@@ -55,23 +55,23 @@ class NewAuctionScreen extends StatelessWidget {
                         },
                       ),
               ),
-              const SizedBox(height: 10),
               Obx(
                 () => controller.sticker.imageUrl.isNotEmpty
                     ? Center(
                         child: Image.network(
                           controller.sticker.imageUrl,
-                          height: 250,
+                          height: 350,
                         ),
                       )
                     : const SizedBox(),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               TextField(
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Initial price \$',
+                  labelText: 'Initial price ',
+                  prefixIcon: Icon(Icons.monetization_on_outlined),
                 ),
                 onChanged: (value) {
                   controller.bestPrice = double.parse(value);
@@ -82,7 +82,7 @@ class NewAuctionScreen extends StatelessWidget {
                 placeHolder: "Add Exchanges",
                 onStickerSelected: controller.addExchangeable,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Obx(
                 () => controller.exchangeables.isNotEmpty
                     ? SizedBox(
@@ -94,11 +94,8 @@ class NewAuctionScreen extends StatelessWidget {
                       )
                     : const SizedBox(),
               ),
-              const SizedBox(height: 20),
-              MaterialButton(
-                color: Colors.black,
-                minWidth: double.infinity,
-                padding: const EdgeInsets.all(20),
+              const SizedBox(height: 10),
+              ActionButton(
                 onPressed: () {
                   DatePicker.showDateTimePicker(context,
                       showTitleActions: true,
@@ -110,10 +107,7 @@ class NewAuctionScreen extends StatelessWidget {
                     print('confirm $date');
                   }, currentTime: now, locale: LocaleType.es);
                 },
-                child: const Text(
-                  'Select end date',
-                  style: TextStyle(color: Colors.white),
-                ),
+                title: 'Select end date',
               ),
               const SizedBox(height: 20),
             ],

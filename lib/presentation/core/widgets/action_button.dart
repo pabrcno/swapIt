@@ -10,7 +10,7 @@ class ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       minWidth: double.infinity,
-      height: 50,
+      height: 60,
       shape: ShapeBorder.lerp(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -21,10 +21,10 @@ class ActionButton extends StatelessWidget {
         0,
       ),
       elevation: 2,
-      color: Colors.green[700],
+      color: Colors.green[300],
       onPressed: onPressed,
       child: Text(title,
-          style: const TextStyle(fontSize: 18, color: Colors.white)),
+          style: const TextStyle(fontSize: 20, color: Colors.white)),
     );
   }
 }

@@ -14,8 +14,9 @@ class StickerPreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => Get.to(() => StickerAuctionScreen(auction: previewData)),
-      child: SizedBox(
-        height: 125,
+      child: Container(
+        padding: const EdgeInsets.all(5),
+        height: 180,
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -30,22 +31,24 @@ class StickerPreview extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Expanded(
                           child: Text(
                             "${previewData.sticker.name} #${previewData.sticker.id}",
                             style: const TextStyle(
-                              fontSize: 14,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Chronometer(
                             endTime: previewData.auctionEnd,
-                            textStyle: const TextStyle(
-                                fontSize: 12, color: Colors.grey)),
+                            textStyle: TextStyle(
+                                fontSize: 12, color: Colors.grey[100])),
                       ],
                     ),
-                    const SizedBox(height: 7),
+                    const SizedBox(height: 12),
                     Text(
                       previewData.ownerLocation,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
@@ -57,16 +60,17 @@ class StickerPreview extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\$ ${previewData.bestPrice}",
-                          style: const TextStyle(
-                            fontSize: 20,
-                          ),
-                        ),
-                        Text(
                           'Bids ${previewData.bids.length}',
                           style: const TextStyle(
                             color: Colors.grey,
-                            fontSize: 14,
+                            fontSize: 12,
+                          ),
+                        ),
+                        Text(
+                          "\$ ${previewData.bestPrice}",
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],

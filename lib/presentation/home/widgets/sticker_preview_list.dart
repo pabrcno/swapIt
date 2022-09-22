@@ -11,12 +11,11 @@ class StickerPreviewList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(top: 20),
+    return Container(
       child: ListView.separated(
         itemCount: auctions.length,
         separatorBuilder: (context, index) => const SizedBox(
-          height: 30,
+          height: 12,
         ),
         itemBuilder: (context, index) {
           return StickerPreview(previewData: auctions[index]);

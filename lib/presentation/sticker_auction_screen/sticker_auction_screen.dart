@@ -34,90 +34,89 @@ class StickerAuctionScreen extends StatelessWidget {
               ),
               Image.network(
                 auction.sticker.imageUrl,
-                width: MediaQuery.of(context).size.width - 40,
+                width: MediaQuery.of(context).size.width,
               ),
               const SizedBox(
                 height: 20,
               ),
-              Card(
-                elevation: 0,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${auction.bestPrice} \$",
-                        style: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      child: Column(children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Chronometer(
+                                endTime: auction.auctionEnd,
+                                textStyle: const TextStyle(fontSize: 20)),
+                            Text(
+                              "${auction.bestPrice} \$",
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Chronometer(
-                              endTime: auction.auctionEnd,
-                              textStyle: const TextStyle(fontSize: 16)),
-                          SizedBox(
-                            child: Row(children: [
-                              const Icon(
-                                Icons.location_on,
-                                size: 16,
-                                color: Colors.grey,
-                              ),
-                              Text(
-                                auction.ownerLocation,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  color: Colors.grey,
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        SizedBox(
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.location_on,
+                                  size: 14,
                                 ),
-                              ),
-                            ]),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ActionButton(title: "Bid", onPressed: () {})
-                    ],
-                  ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  auction.ownerLocation,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ]),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                      ]),
+                    ),
+                    ActionButton(title: "Bid", onPressed: () {})
+                  ],
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Card(
-                elevation: 0,
-                child: Container(
-                  width: double.infinity,
-                  height: 200,
-                  padding: const EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Exchange for",
-                        style: TextStyle(
-                          fontSize: 18,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      ExchangesListView(
-                        exchanges: auction.exchangeables,
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                    ],
-                  ),
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Exchange for",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    ExchangesListView(
+                      exchanges: auction.exchangeables,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(
@@ -126,7 +125,7 @@ class StickerAuctionScreen extends StatelessWidget {
               Text(
                 auction.bids.isEmpty ? "" : "Bids",
                 style:
-                    const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               SizedBox(
                 height: 200,
