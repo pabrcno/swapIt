@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:get/get.dart';
 import 'package:swapit/application/auction/sticker_auction_controller.dart';
 import 'package:swapit/injection.dart';
 import 'package:swapit/presentation/core/constants.dart';
 import 'package:swapit/presentation/core/widgets/exchanges_list_view.dart';
-import 'package:swapit/presentation/new_auction_screen/widgets/city_picker.dart';
 import 'package:swapit/presentation/new_auction_screen/widgets/search_bar.dart';
 
 import '../../dev_data.dart';
 import '../../domain/sticker/sticker_model.dart';
 
 class NewAuctionScreen extends StatelessWidget {
-  StickerAuctionController controller = getIt<StickerAuctionController>();
+  final StickerAuctionController controller = getIt<StickerAuctionController>();
   final now = DateTime.now();
   NewAuctionScreen({Key? key}) : super(key: key);
 
@@ -27,35 +27,57 @@ class NewAuctionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchBar(
-                placeHolder: "Add a sticker for auction",
-                onStickerSelected: (sticker) {
-                  controller.sticker = sticker;
-                },
+              Obx(
+                () => controller.sticker.id.isNotEmpty
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: Text(
+                                "${controller.sticker.name} - ${controller.sticker.id}",
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  overflow: TextOverflow.ellipsis,
+                                )),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.clear),
+                            onPressed: () {
+                              controller.sticker = StickerModel.empty();
+                            },
+                          )
+                        ],
+                      )
+                    : SearchBar(
+                        placeHolder: "Add a sticker for auction",
+                        onStickerSelected: (sticker) {
+                          controller.sticker = sticker;
+                        },
+                      ),
               ),
               const SizedBox(height: 20),
-              Center(
-                child: Image.network(
-                  StickerModel.fromJson(
-                          data[0]["sticker"] as Map<String, dynamic>)
-                      .imageUrl,
-                  height: 220,
+
+              Obx(
+                () => controller.sticker.imageUrl.isNotEmpty
+                    ? Center(
+                        child: Image.network(
+                          controller.sticker.imageUrl,
+                          height: 220,
+                        ),
+                      )
+                    : const SizedBox(height: 20),
+              ),
+              const SizedBox(height: 20),
+              const TextField(
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Initial price',
                 ),
               ),
-
               const SizedBox(height: 20),
               // card with title initial price and an number input
-              Container(
-                padding: const EdgeInsets.all(10),
-                color: Colors.grey[900],
-                width: double.infinity,
-                child: const Center(
-                    child: Text("Select your city",
-                        style: TextStyle(fontSize: 16, color: Colors.white))),
-              ),
-
-              CityPicker(),
-              const SizedBox(height: 20),
               SizedBox(
                 height: 250,
                 child: Column(children: [
@@ -72,11 +94,11 @@ class NewAuctionScreen extends StatelessWidget {
                   ),
                 ]),
               ),
-
               const SizedBox(height: 20),
               MaterialButton(
                 color: Colors.black,
                 minWidth: double.infinity,
+                padding: const EdgeInsets.all(20),
                 onPressed: () {
                   DatePicker.showDateTimePicker(context,
                       showTitleActions: true,
@@ -94,13 +116,6 @@ class NewAuctionScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              const TextField(
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Initial price',
-                ),
-              ),
             ],
           ),
         ),

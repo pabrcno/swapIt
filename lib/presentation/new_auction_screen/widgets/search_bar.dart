@@ -21,68 +21,45 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     StickerRecommendationPager pager = StickerRecommendationPager();
-    return _isOptionSelected
-        ? Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
-            color: Colors.white,
-            padding: const EdgeInsets.only(left: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  child: const Text("sticker",
-                      style: TextStyle(
-                        fontSize: 18,
-                        overflow: TextOverflow.ellipsis,
-                      )),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.clear),
-                  onPressed: () {},
-                )
-              ],
-            ))
-        : Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: 600,
-                  child: PaginatedSearchBar<StickerModel>(
-                    maxHeight: 300,
-                    hintText: widget.placeHolder,
-                    onSearch: ({
-                      required pageIndex,
-                      required pageSize,
-                      required searchQuery,
-                    }) async {
-                      return Future.delayed(const Duration(milliseconds: 0),
-                          () async {
-                        return data
-                            .map((e) => StickerModel.fromJson(
-                                e["sticker"] as Map<String, dynamic>))
-                            .toList();
-                      });
-                    },
-                    itemBuilder: (
-                      context, {
-                      required item,
-                      required index,
-                    }) {
-                      return StickerRecommendation(
-                        stickerModel: item,
-                        toggleSearchBar: () => setState(() {}),
-                        setSticker: widget.onStickerSelected,
-                      );
-                    },
-                  ),
-                ),
-              ),
-            ],
-          );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Container(
+          alignment: Alignment.topCenter,
+          child: SizedBox(
+            width: 600,
+            child: PaginatedSearchBar<StickerModel>(
+              maxHeight: 300,
+              hintText: widget.placeHolder,
+              onSearch: ({
+                required pageIndex,
+                required pageSize,
+                required searchQuery,
+              }) async {
+                return Future.delayed(const Duration(milliseconds: 0),
+                    () async {
+                  return data
+                      .map((e) => StickerModel.fromJson(
+                          e["sticker"] as Map<String, dynamic>))
+                      .toList();
+                });
+              },
+              itemBuilder: (
+                context, {
+                required item,
+                required index,
+              }) {
+                return StickerRecommendation(
+                  stickerModel: item,
+                  toggleSearchBar: () => setState(() {}),
+                  setSticker: widget.onStickerSelected,
+                );
+              },
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
 

@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
+import 'package:injectable/injectable.dart';
 import 'package:swapit/domain/auction/i_auction_service.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/domain/sticker/sticker_model.dart';
 
+@injectable
 class StickerAuctionController extends GetxController {
   final IAuctionService _auctionService;
   final Rx<StickerAuctionModel> _auction = StickerAuctionModel.empty().obs;
@@ -13,6 +15,8 @@ class StickerAuctionController extends GetxController {
   set sticker(StickerModel sticker) {
     _auction.value = _auction.value.copyWith(sticker: sticker);
   }
+
+  StickerModel get sticker => _auction.value.sticker;
 
   set ownerLocation(String ownerLocation) {
     _auction.value = _auction.value.copyWith(ownerLocation: ownerLocation);
