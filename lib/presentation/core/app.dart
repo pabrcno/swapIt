@@ -12,7 +12,8 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.green[200],
         appBarTheme: const AppBarTheme(
-          elevation: 0,
+          shadowColor: Colors.grey,
+          elevation: 1,
           toolbarHeight: 60,
           backgroundColor: Color.fromRGBO(20, 20, 20, 1),
           titleTextStyle: TextStyle(

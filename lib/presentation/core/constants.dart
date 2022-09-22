@@ -1,1 +1,1 @@
-const double screenPadding = 20;
+const double screenPadding = 5;
