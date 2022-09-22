@@ -29,10 +29,10 @@ class _SearchBarState extends State<SearchBar> {
           child: SizedBox(
             width: 600,
             child: PaginatedSearchBar<StickerModel>(
+              padding: const EdgeInsets.all(0),
               containerDecoration: const BoxDecoration(
                 color: Colors.transparent,
               ),
-              itemPadding: 5,
               maxHeight: 300,
               hintText: widget.placeHolder,
               onSearch: ({
@@ -88,10 +88,28 @@ class StickerRecommendation extends StatelessWidget {
             name: stickerModel.name,
             imageUrl: stickerModel.imageUrl));
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-        child: Text("${stickerModel.name} #${stickerModel.id}",
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+      child: SizedBox(
+        height: 110,
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Image.network(stickerModel.imageUrl),
+            const SizedBox(
+              width: 40,
+            ),
+            Expanded(
+              child: Text(
+                "${stickerModel.name} #${stickerModel.id}",
+                style: const TextStyle(
+                  fontSize: 18,
+                  letterSpacing: 0.6,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

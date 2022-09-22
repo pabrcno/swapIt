@@ -99,7 +99,7 @@ class NewAuctionScreen extends StatelessWidget {
                     onPressed: () {
                       DatePicker.showDateTimePicker(context,
                           theme: DatePickerTheme(
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: Theme.of(context).backgroundColor,
                             doneStyle: TextStyle(
                                 color: Theme.of(context).primaryColor),
                             cancelStyle: TextStyle(color: Colors.red[300]),
