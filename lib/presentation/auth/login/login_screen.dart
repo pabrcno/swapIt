@@ -17,15 +17,9 @@ class LoginScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
                   Image.asset(
                     'assets/logo500.png',
                     width: MediaQuery.of(context).size.width - 100,
-                  ),
-                  const SizedBox(
-                    height: 50,
                   ),
                   const TextField(
                     decoration: InputDecoration(
