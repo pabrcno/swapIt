@@ -28,7 +28,8 @@ class StickerAuctionModel with _$StickerAuctionModel {
         id: '',
         ownerId: '',
         sticker: StickerModel.empty(),
-        ownerLocation: '',
+        //TODO: remove string content
+        ownerLocation: 'Buenos Aires',
         exchangeables: [],
         bestPrice: 0,
         winnerId: null,

@@ -46,16 +46,31 @@ class StickerAuctionController extends GetxController {
     _auction.value = _auction.value.copyWith(auctionStart: DateTime.now());
   }
 
+  double get bestPrice => _auction.value.bestPrice;
+
   set bestPrice(double bestPrice) {
     _auction.value = _auction.value.copyWith(bestPrice: bestPrice);
   }
+
+  String get ownerLocation => _auction.value.ownerLocation;
+
+  get isValid =>
+      sticker.id != '' &&
+      auctionEnd != null &&
+      (bestPrice > 0 || exchangeables.isNotEmpty) &&
+      ownerLocation != '';
 
   createStickerAuction() async {
     var creationOption = await _auctionService.createAuction(auction);
 
     creationOption.fold(
-      (l) => print(l),
-      (r) => print(r),
+      (l) {
+        print('Error creating auction');
+      },
+      (r) {
+        print('Auction created');
+        Get.back();
+      },
     );
   }
 }

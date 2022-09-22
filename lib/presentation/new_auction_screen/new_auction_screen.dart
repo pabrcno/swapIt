@@ -122,7 +122,12 @@ class NewAuctionScreen extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () async {
+            if (controller.isValid) {
+              controller.auctionStart = DateTime.now();
+              await controller.createStickerAuction();
+            }
+          },
           child: const Icon(Icons.check),
         ),
       ),
