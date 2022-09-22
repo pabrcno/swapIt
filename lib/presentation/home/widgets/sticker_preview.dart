@@ -37,25 +37,26 @@ class StickerPreview extends StatelessWidget {
                           child: Text(
                             "${previewData.sticker.name} #${previewData.sticker.id}",
                             style: const TextStyle(
-                              fontSize: 17,
+                              fontSize: 16,
+                              letterSpacing: 0.6,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
                         Chronometer(
                             endTime: previewData.auctionEnd,
-                            textStyle: TextStyle(
-                                fontSize: 12, color: Colors.grey[100])),
+                            textStyle: const TextStyle(
+                                fontSize: 12, color: Colors.grey)),
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 14),
                     Text(
                       previewData.ownerLocation,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 14),
                     ExchangesListView(exchanges: previewData.exchangeables),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 14),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -69,7 +70,7 @@ class StickerPreview extends StatelessWidget {
                         Text(
                           "\$ ${previewData.bestPrice}",
                           style: const TextStyle(
-                            fontSize: 17,
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
