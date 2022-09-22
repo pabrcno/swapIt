@@ -111,6 +111,7 @@ class StickerAuctionScreen extends StatelessWidget {
                       height: 10,
                     ),
                     ExchangesListView(
+                      height: 100,
                       exchanges: auction.exchangeables,
                     ),
                     const SizedBox(

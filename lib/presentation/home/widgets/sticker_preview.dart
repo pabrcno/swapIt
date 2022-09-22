@@ -49,14 +49,17 @@ class StickerPreview extends StatelessWidget {
                                 fontSize: 12, color: Colors.grey)),
                       ],
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 10),
                     Text(
                       previewData.ownerLocation,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
-                    const SizedBox(height: 14),
-                    ExchangesListView(exchanges: previewData.exchangeables),
-                    const SizedBox(height: 14),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    ExchangesListView(
+                        height: 70, exchanges: previewData.exchangeables),
+                    const SizedBox(height: 12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

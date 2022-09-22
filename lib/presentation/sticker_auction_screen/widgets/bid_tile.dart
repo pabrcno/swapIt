@@ -46,7 +46,7 @@ class BidTile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                ExchangesListView(exchanges: bid.exchanges),
+                ExchangesListView(height: 100, exchanges: bid.exchanges),
                 const SizedBox(height: 10),
                 Align(
                   alignment: Alignment.bottomRight,

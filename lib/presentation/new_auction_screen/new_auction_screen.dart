@@ -85,12 +85,9 @@ class NewAuctionScreen extends StatelessWidget {
               const SizedBox(height: 10),
               Obx(
                 () => controller.exchangeables.isNotEmpty
-                    ? SizedBox(
+                    ? ExchangesListView(
                         height: 200,
-                        width: double.infinity,
-                        child: ExchangesListView(
-                          exchanges: controller.exchangeables,
-                        ),
+                        exchanges: controller.exchangeables,
                       )
                     : const SizedBox(),
               ),

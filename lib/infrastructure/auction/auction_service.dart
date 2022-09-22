@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:injectable/injectable.dart';
 import 'package:swapit/domain/auction/bid_model.dart';
@@ -120,8 +122,9 @@ class AuctionService implements IAuctionService {
       var res = await _fbFunctions
           .httpsCallable('stickerAuctionFunctions-create')
           .call(<String, dynamic>{'auction': auction.toJson()});
+      var data = jsonEncode({...res.data["auction"], 'id': res.data["id"]});
 
-      return right(res.data);
+      return right(StickerAuctionModel.fromJson(jsonDecode(data)));
     } on FirebaseFunctionsException {
       return left(const AuctionFailure.unexpected());
     }

@@ -3,12 +3,15 @@ import 'package:swapit/domain/sticker/sticker_model.dart';
 
 class ExchangesListView extends StatelessWidget {
   final List<StickerModel> exchanges;
-  const ExchangesListView({Key? key, required this.exchanges})
+  final double height;
+  const ExchangesListView(
+      {Key? key, required this.exchanges, required this.height})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: height,
       child: ListView.separated(
         itemCount: exchanges.length,
         scrollDirection: Axis.horizontal,
