@@ -120,6 +120,7 @@ class AuctionService implements IAuctionService {
       var res = await _fbFunctions
           .httpsCallable('stickerAuctionFunctions-create')
           .call(<String, dynamic>{'auction': auction.toJson()});
+
       return right(res.data);
     } on FirebaseFunctionsException {
       return left(const AuctionFailure.unexpected());
