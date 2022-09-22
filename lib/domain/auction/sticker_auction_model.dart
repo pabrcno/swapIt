@@ -16,8 +16,8 @@ class StickerAuctionModel with _$StickerAuctionModel {
     required List<StickerModel> exchangeables,
     required double bestPrice,
     required String? winnerId,
-    required DateTime auctionEnd,
-    required DateTime auctionStart,
+    required DateTime? auctionEnd,
+    required DateTime? auctionStart,
     required List<BidModel> bids,
   }) = _StickerAuctionModel;
 
@@ -32,8 +32,8 @@ class StickerAuctionModel with _$StickerAuctionModel {
         exchangeables: [],
         bestPrice: 0,
         winnerId: null,
-        auctionEnd: DateTime.now(),
-        auctionStart: DateTime.now(),
+        auctionEnd: null,
+        auctionStart: null,
         bids: [],
       );
 }

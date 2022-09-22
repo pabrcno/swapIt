@@ -27,8 +27,8 @@ mixin _$StickerAuctionModel {
   List<StickerModel> get exchangeables => throw _privateConstructorUsedError;
   double get bestPrice => throw _privateConstructorUsedError;
   String? get winnerId => throw _privateConstructorUsedError;
-  DateTime get auctionEnd => throw _privateConstructorUsedError;
-  DateTime get auctionStart => throw _privateConstructorUsedError;
+  DateTime? get auctionEnd => throw _privateConstructorUsedError;
+  DateTime? get auctionStart => throw _privateConstructorUsedError;
   List<BidModel> get bids => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,8 +50,8 @@ abstract class $StickerAuctionModelCopyWith<$Res> {
       List<StickerModel> exchangeables,
       double bestPrice,
       String? winnerId,
-      DateTime auctionEnd,
-      DateTime auctionStart,
+      DateTime? auctionEnd,
+      DateTime? auctionStart,
       List<BidModel> bids});
 
   $StickerModelCopyWith<$Res> get sticker;
@@ -111,11 +111,11 @@ class _$StickerAuctionModelCopyWithImpl<$Res>
       auctionEnd: auctionEnd == freezed
           ? _value.auctionEnd
           : auctionEnd // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       auctionStart: auctionStart == freezed
           ? _value.auctionStart
           : auctionStart // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       bids: bids == freezed
           ? _value.bids
           : bids // ignore: cast_nullable_to_non_nullable
@@ -146,8 +146,8 @@ abstract class _$$_StickerAuctionModelCopyWith<$Res>
       List<StickerModel> exchangeables,
       double bestPrice,
       String? winnerId,
-      DateTime auctionEnd,
-      DateTime auctionStart,
+      DateTime? auctionEnd,
+      DateTime? auctionStart,
       List<BidModel> bids});
 
   @override
@@ -210,11 +210,11 @@ class __$$_StickerAuctionModelCopyWithImpl<$Res>
       auctionEnd: auctionEnd == freezed
           ? _value.auctionEnd
           : auctionEnd // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       auctionStart: auctionStart == freezed
           ? _value.auctionStart
           : auctionStart // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       bids: bids == freezed
           ? _value._bids
           : bids // ignore: cast_nullable_to_non_nullable
@@ -264,9 +264,9 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
   @override
   final String? winnerId;
   @override
-  final DateTime auctionEnd;
+  final DateTime? auctionEnd;
   @override
-  final DateTime auctionStart;
+  final DateTime? auctionStart;
   final List<BidModel> _bids;
   @override
   List<BidModel> get bids {
@@ -338,8 +338,8 @@ abstract class _StickerAuctionModel implements StickerAuctionModel {
       required final List<StickerModel> exchangeables,
       required final double bestPrice,
       required final String? winnerId,
-      required final DateTime auctionEnd,
-      required final DateTime auctionStart,
+      required final DateTime? auctionEnd,
+      required final DateTime? auctionStart,
       required final List<BidModel> bids}) = _$_StickerAuctionModel;
 
   factory _StickerAuctionModel.fromJson(Map<String, dynamic> json) =
@@ -360,9 +360,9 @@ abstract class _StickerAuctionModel implements StickerAuctionModel {
   @override
   String? get winnerId;
   @override
-  DateTime get auctionEnd;
+  DateTime? get auctionEnd;
   @override
-  DateTime get auctionStart;
+  DateTime? get auctionStart;
   @override
   List<BidModel> get bids;
   @override

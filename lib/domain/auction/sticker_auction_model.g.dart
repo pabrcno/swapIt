@@ -18,8 +18,12 @@ _$_StickerAuctionModel _$$_StickerAuctionModelFromJson(
           .toList(),
       bestPrice: (json['bestPrice'] as num).toDouble(),
       winnerId: json['winnerId'] as String?,
-      auctionEnd: DateTime.parse(json['auctionEnd'] as String),
-      auctionStart: DateTime.parse(json['auctionStart'] as String),
+      auctionEnd: json['auctionEnd'] == null
+          ? null
+          : DateTime.parse(json['auctionEnd'] as String),
+      auctionStart: json['auctionStart'] == null
+          ? null
+          : DateTime.parse(json['auctionStart'] as String),
       bids: (json['bids'] as List<dynamic>)
           .map((e) => BidModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -35,7 +39,7 @@ Map<String, dynamic> _$$_StickerAuctionModelToJson(
       'exchangeables': instance.exchangeables.map((e) => e.toJson()).toList(),
       'bestPrice': instance.bestPrice,
       'winnerId': instance.winnerId,
-      'auctionEnd': instance.auctionEnd.toIso8601String(),
-      'auctionStart': instance.auctionStart.toIso8601String(),
+      'auctionEnd': instance.auctionEnd?.toIso8601String(),
+      'auctionStart': instance.auctionStart?.toIso8601String(),
       'bids': instance.bids.map((e) => e.toJson()).toList(),
     };

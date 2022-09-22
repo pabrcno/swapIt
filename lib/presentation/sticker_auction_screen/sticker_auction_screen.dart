@@ -50,7 +50,7 @@ class StickerAuctionScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Chronometer(
-                                endTime: auction.auctionEnd,
+                                endTime: auction.auctionEnd!,
                                 textStyle: const TextStyle(fontSize: 20)),
                             Text(
                               "${auction.bestPrice} \$",

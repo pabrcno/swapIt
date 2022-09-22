@@ -36,9 +36,11 @@ class StickerAuctionController extends GetxController {
 
   get exchangeables => _auction.value.exchangeables;
 
-  set auctionEnd(DateTime auctionEnd) {
+  set auctionEnd(DateTime? auctionEnd) {
     _auction.value = _auction.value.copyWith(auctionEnd: auctionEnd);
   }
+
+  DateTime? get auctionEnd => _auction.value.auctionEnd;
 
   set auctionStart(DateTime auctionStart) {
     _auction.value = _auction.value.copyWith(auctionStart: DateTime.now());

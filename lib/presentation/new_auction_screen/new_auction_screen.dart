@@ -95,30 +95,29 @@ class NewAuctionScreen extends StatelessWidget {
                     : const SizedBox(),
               ),
               const SizedBox(height: 10),
-              ActionButton(
-                onPressed: () {
-                  DatePicker.showDateTimePicker(context,
-                      theme: DatePickerTheme(
-                        backgroundColor: Colors.transparent,
-                        doneStyle:
-                            TextStyle(color: Theme.of(context).primaryColor),
-                        cancelStyle: TextStyle(color: Colors.red[300]),
-                        itemStyle: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                      showTitleActions: true,
-                      minTime: now,
-                      maxTime: DateTime(now.year, now.month, now.day + 7),
-                      onChanged: (date) {
-                    print('change $date');
-                  }, onConfirm: (date) {
-                    print('confirm $date');
-                  }, currentTime: now, locale: LocaleType.es);
-                },
-                title: 'Select end date',
-              ),
-              const SizedBox(height: 20),
+              Obx((() => ActionButton(
+                    onPressed: () {
+                      DatePicker.showDateTimePicker(context,
+                          theme: DatePickerTheme(
+                            backgroundColor: Colors.transparent,
+                            doneStyle: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                            cancelStyle: TextStyle(color: Colors.red[300]),
+                            itemStyle: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          showTitleActions: true,
+                          minTime: now,
+                          maxTime: DateTime(now.year, now.month, now.day + 7),
+                          onConfirm: (date) {
+                        controller.auctionEnd = date;
+                      }, currentTime: now, locale: LocaleType.es);
+                    },
+                    title: controller.auctionEnd == null
+                        ? 'Select end date'
+                        : 'End date (${controller.auctionEnd!.toLocal().toString().substring(0, 16)})',
+                  )))
             ],
           ),
         ),

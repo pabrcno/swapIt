@@ -44,7 +44,7 @@ class StickerPreview extends StatelessWidget {
                           ),
                         ),
                         Chronometer(
-                            endTime: previewData.auctionEnd,
+                            endTime: previewData.auctionEnd!,
                             textStyle: const TextStyle(
                                 fontSize: 12, color: Colors.grey)),
                       ],
