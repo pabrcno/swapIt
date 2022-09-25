@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import 'package:swapit/domain/auction/i_auction_service.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/domain/sticker/sticker_model.dart';
+import 'package:swapit/presentation/home/home.dart';
 
 @injectable
 class StickerAuctionController extends GetxController {
@@ -83,9 +84,10 @@ class StickerAuctionController extends GetxController {
       (l) {
         print('Error creating auction');
       },
-      (r) {
+      (r) async {
+        await getAllAuctions();
         print('Auction created');
-        Get.back();
+        Get.off(() => const Home());
       },
     );
   }
