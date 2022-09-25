@@ -98,7 +98,6 @@ class StickerAuctionScreen extends StatelessWidget {
               ),
               SizedBox(
                 width: double.infinity,
-                height: 200,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -111,7 +110,7 @@ class StickerAuctionScreen extends StatelessWidget {
                       height: 10,
                     ),
                     ExchangesListView(
-                      height: 100,
+                      height: 200,
                       exchanges: auction.exchangeables,
                     ),
                     const SizedBox(

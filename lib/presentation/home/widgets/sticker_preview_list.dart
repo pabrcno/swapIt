@@ -1,26 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:swapit/presentation/home/widgets/sticker_preview.dart';
 
-import '../../../domain/auction/sticker_auction_model.dart';
-
-import 'sticker_preview.dart';
+import '../../../application/auction/sticker_auction_controller.dart';
+import '../../../injection.dart';
 
 class StickerPreviewList extends StatelessWidget {
-  final List<StickerAuctionModel> auctions;
-  const StickerPreviewList({Key? key, required this.auctions})
-      : super(key: key);
+  final StickerAuctionController controller = getIt<StickerAuctionController>();
+
+  StickerPreviewList({Key? key}) : super(key: key) {
+    controller.getAllAuctions();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.separated(
-        itemCount: auctions.length,
-        separatorBuilder: (context, index) => const SizedBox(
-          height: 12,
-        ),
-        itemBuilder: (context, index) {
-          return StickerPreview(previewData: auctions[index]);
-        },
-      ),
+    return Obx(
+      () => controller.isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : controller.auctions.isEmpty
+              ? Center(
+                  child: Text(
+                  "No auctions yet",
+                  style: Theme.of(context).textTheme.headline6,
+                ))
+              : ListView.separated(
+                  itemCount: controller.auctions.length,
+                  separatorBuilder: (context, index) => const SizedBox(
+                    height: 12,
+                  ),
+                  itemBuilder: (context, index) {
+                    return StickerPreview(
+                        previewData: controller.auctions[index]);
+                  },
+                ),
     );
   }
 }

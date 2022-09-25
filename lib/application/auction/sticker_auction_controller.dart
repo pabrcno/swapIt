@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:swapit/domain/auction/i_auction_service.dart';
@@ -8,9 +10,23 @@ import 'package:swapit/domain/sticker/sticker_model.dart';
 class StickerAuctionController extends GetxController {
   final IAuctionService _auctionService;
   final Rx<StickerAuctionModel> _auction = StickerAuctionModel.empty().obs;
+  final RxList<StickerAuctionModel> _auctions = <StickerAuctionModel>[].obs;
+  final RxBool _isLoading = false.obs;
   StickerAuctionController(this._auctionService);
 
+  bool get isLoading => _isLoading.value;
+
+  set isLoading(bool value) => _isLoading.value = value;
+
+  toggleIsLoading() => isLoading = !isLoading;
+
   StickerAuctionModel get auction => _auction.value;
+
+  List<StickerAuctionModel> get auctions => _auctions;
+
+  set auction(StickerAuctionModel value) => _auction.value = value;
+
+  set auctions(List<StickerAuctionModel> value) => _auctions.assignAll(value);
 
   set sticker(StickerModel sticker) {
     _auction.value = _auction.value.copyWith(sticker: sticker);
@@ -72,5 +88,19 @@ class StickerAuctionController extends GetxController {
         Get.back();
       },
     );
+  }
+
+  getAllAuctions() async {
+    toggleIsLoading();
+    var auctionsOption = await _auctionService.getAllAuctions();
+
+    auctionsOption.fold((l) {
+      log(
+        l.toString(),
+      );
+    }, (r) {
+      auctions = r;
+    });
+    toggleIsLoading();
   }
 }

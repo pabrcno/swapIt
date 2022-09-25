@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   ActionButton(
                     onPressed: () {
-                      Get.to(() => const Home());
+                      Get.to(() => Home());
                     },
                     title: 'Login',
                   ),

@@ -3,9 +3,6 @@ import 'package:get/get.dart';
 import 'package:swapit/presentation/home/widgets/sticker_preview_list.dart';
 import 'package:swapit/presentation/new_auction_screen/new_auction_screen.dart';
 
-import '../../dev_data.dart';
-import '../../domain/auction/sticker_auction_model.dart';
-
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -27,9 +24,7 @@ class Home extends StatelessWidget {
           )
         ],
       ),
-      body: StickerPreviewList(
-        auctions: data.map((e) => StickerAuctionModel.fromJson(e)).toList(),
-      ),
+      body: StickerPreviewList(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Get.to(() => NewAuctionScreen());

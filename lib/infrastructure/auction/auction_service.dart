@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_functions/cloud_functions.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:swapit/domain/auction/bid_model.dart';
 import 'package:swapit/domain/auction/auction_failure.dart';
@@ -11,6 +12,38 @@ import 'package:swapit/domain/auction/sticker_auction_model.dart';
 @LazySingleton(as: IAuctionService)
 class AuctionService implements IAuctionService {
   final _fbFunctions = FirebaseFunctions.instance;
+
+  final _fbFunctionPrefix = 'stickerAuctionFunctions';
+  final _storage = FirebaseStorage.instance;
+  Future<Map<String, dynamic>> _stickerJsonFromFirebase(dynamic json) async {
+    final storageRef = _storage.ref(json['imageUrl']);
+    final url = !json["imageUrl"].toString().contains('http')
+        ? await storageRef.getDownloadURL()
+        : json['imageUrl'];
+
+    json = jsonDecode(jsonEncode(json));
+    return {...json, "imageUrl": url};
+  }
+
+  Future<List<StickerAuctionModel>> _auctionsFromFirebase(
+      HttpsCallableResult<dynamic> result) async {
+    final data = await Future.wait((result.data as List)
+        .map((e) async => {
+              ...e["auction"],
+              "sticker":
+                  await _stickerJsonFromFirebase(e["auction"]["sticker"]),
+              "exchangeables": await Future.wait(
+                  (e["auction"]["exchangeables"] as List)
+                      .map((e) => _stickerJsonFromFirebase(e))),
+            })
+        .toList());
+    final auctions = data
+        .map((e) => StickerAuctionModel.fromJson(jsonDecode(jsonEncode(e))))
+        .toList();
+
+    return auctions;
+  }
+
   @override
   Future<Either<AuctionFailure, Unit>> bid(
       String auctionId, BidModel bid) async {
@@ -41,11 +74,10 @@ class AuctionService implements IAuctionService {
   Future<Either<AuctionFailure, List<StickerAuctionModel>>>
       getAllAuctions() async {
     try {
-      final result = await _fbFunctions.httpsCallable('getAllAuctions').call();
-      final auctions = (result.data as List)
-          .map((e) => StickerAuctionModel.fromJson(e))
-          .toList();
-      return right(auctions);
+      final result =
+          await _fbFunctions.httpsCallable('$_fbFunctionPrefix-getAll').call();
+
+      return right(await _auctionsFromFirebase(result));
     } on FirebaseFunctionsException {
       return left(const AuctionFailure.unexpected());
     }
@@ -120,7 +152,7 @@ class AuctionService implements IAuctionService {
       StickerAuctionModel auction) async {
     try {
       var res = await _fbFunctions
-          .httpsCallable('stickerAuctionFunctions-create')
+          .httpsCallable('$_fbFunctionPrefix-create')
           .call(<String, dynamic>{'auction': auction.toJson()});
       var data = jsonEncode({...res.data["auction"], 'id': res.data["id"]});
 
