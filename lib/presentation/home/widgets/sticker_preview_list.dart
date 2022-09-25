@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swapit/presentation/core/widgets/swapit_loader.dart';
 import 'package:swapit/presentation/home/widgets/sticker_preview.dart';
 
 import '../../../application/auction/sticker_auction_controller.dart';
@@ -17,7 +18,7 @@ class StickerPreviewList extends StatelessWidget {
     return Obx(
       () => controller.isLoading
           ? const Center(
-              child: CircularProgressIndicator(),
+              child: SwapItLoader(),
             )
           : controller.auctions.isEmpty
               ? Center(
