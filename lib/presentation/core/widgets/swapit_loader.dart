@@ -9,7 +9,7 @@ class SwapItLoader extends StatefulWidget {
 }
 
 class _SwapItLoaderState extends State<SwapItLoader> {
-  double opacity = 0.1;
+  double opacity = 0.3;
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _SwapItLoaderState extends State<SwapItLoader> {
         return;
       }
       setState(() {
-        opacity = opacity == 0.1 ? 1 : 0.1;
+        opacity = opacity == 0.3 ? 1 : 0.3;
       });
     });
   }
