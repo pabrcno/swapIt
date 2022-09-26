@@ -2,10 +2,12 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
+import 'package:swapit/domain/auction/bid_model.dart';
 import 'package:swapit/domain/auction/i_auction_service.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/domain/sticker/sticker_model.dart';
 import 'package:swapit/presentation/home/home.dart';
+import 'package:swapit/presentation/sticker_auction_screen/sticker_auction_screen.dart';
 
 @injectable
 class StickerAuctionController extends GetxController {
@@ -102,6 +104,36 @@ class StickerAuctionController extends GetxController {
       );
     }, (r) {
       auctions = r;
+    });
+    toggleIsLoading();
+  }
+
+  bid(
+      {required String auctionId,
+      required List<StickerModel> selectedStickers,
+      required double selectedPrice}) async {
+    Get.close(1);
+    toggleIsLoading();
+    var bidOption = await _auctionService.bid(
+      auctionId,
+      BidModel(
+          id: '',
+          bidderId: '',
+          exchanges: selectedStickers,
+          amount: selectedPrice,
+          bidTime: DateTime.now()),
+    );
+
+    bidOption.fold((l) {
+      log(
+        l.toString(),
+      );
+    }, (r) async {
+      await getAllAuctions();
+      Get.reloadAll(force: true);
+      Get.to(() => StickerAuctionScreen(
+            auction: r,
+          ));
     });
     toggleIsLoading();
   }

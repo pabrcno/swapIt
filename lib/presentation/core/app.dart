@@ -52,7 +52,7 @@ class App extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color.fromRGBO(20, 20, 20, 1),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.green[300],
+          backgroundColor: Colors.green[600],
           foregroundColor: Colors.white,
           sizeConstraints: const BoxConstraints.tightFor(
             width: 65,

@@ -33,8 +33,8 @@ class StickerAuctionModel with _$StickerAuctionModel {
         exchangeables: [],
         bestPrice: 0,
         winnerId: null,
-        auctionEnd: null,
-        auctionStart: null,
+        auctionEnd: DateTime.now(),
+        auctionStart: DateTime.now(),
         bids: [],
       );
 }

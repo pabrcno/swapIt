@@ -8,6 +8,7 @@ import '../../sticker_auction_screen/sticker_auction_screen.dart';
 
 class StickerPreview extends StatelessWidget {
   final StickerAuctionModel previewData;
+
   const StickerPreview({Key? key, required this.previewData}) : super(key: key);
 
   @override

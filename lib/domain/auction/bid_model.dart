@@ -16,4 +16,12 @@ class BidModel with _$BidModel {
 
   factory BidModel.fromJson(Map<String, dynamic> json) =>
       _$BidModelFromJson(json);
+
+  factory BidModel.empty() => BidModel(
+        id: '',
+        bidderId: '',
+        exchanges: [],
+        amount: 0,
+        bidTime: DateTime.now(),
+      );
 }

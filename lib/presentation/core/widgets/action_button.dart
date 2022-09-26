@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 class ActionButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
-  const ActionButton({Key? key, required this.title, required this.onPressed})
+  final double height = 60;
+  const ActionButton(
+      {Key? key, required this.title, required this.onPressed, height})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
       minWidth: double.infinity,
-      height: 60,
+      height: height,
       shape: ShapeBorder.lerp(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),

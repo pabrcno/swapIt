@@ -21,7 +21,8 @@ abstract class IAuctionService {
   Future<Either<AuctionFailure, List<StickerAuctionModel>>>
       getAuctionsByStickerAndCity(String stickerId, String city);
 
-  Future<Either<AuctionFailure, Unit>> bid(String auctionId, BidModel bid);
+  Future<Either<AuctionFailure, StickerAuctionModel>> bid(
+      String auctionId, BidModel bid);
 
   Future<Either<AuctionFailure, StickerAuctionModel>> createAuction(
       StickerAuctionModel auction);
