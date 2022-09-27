@@ -15,6 +15,7 @@ class StickerAuctionController extends GetxController {
   final Rx<StickerAuctionModel> _auction = StickerAuctionModel.empty().obs;
   final RxList<StickerAuctionModel> _auctions = <StickerAuctionModel>[].obs;
   final RxBool _isLoading = false.obs;
+
   StickerAuctionController(this._auctionService);
 
   bool get isLoading => _isLoading.value;
@@ -36,6 +37,8 @@ class StickerAuctionController extends GetxController {
   }
 
   StickerModel get sticker => _auction.value.sticker;
+
+  get bids => _auction.value.bids;
 
   set ownerLocation(String ownerLocation) {
     _auction.value = _auction.value.copyWith(ownerLocation: ownerLocation);
@@ -94,6 +97,17 @@ class StickerAuctionController extends GetxController {
     );
   }
 
+  getAuction({required String auctionId}) async {
+    (await _auctionService.getAuctionById(auctionId)).fold(
+      (l) {
+        print('Error getting auction');
+      },
+      (r) {
+        auction = r;
+      },
+    );
+  }
+
   getAllAuctions() async {
     toggleIsLoading();
     var auctionsOption = await _auctionService.getAllAuctions();
@@ -128,9 +142,9 @@ class StickerAuctionController extends GetxController {
       log(
         l.toString(),
       );
-    }, (r) async {
-      await getAllAuctions();
-      Get.reloadAll(force: true);
+    }, (r) {
+      auction = r;
+
       Get.to(() => StickerAuctionScreen(
             auction: r,
           ));

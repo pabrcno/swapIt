@@ -26,4 +26,6 @@ abstract class IAuctionService {
 
   Future<Either<AuctionFailure, StickerAuctionModel>> createAuction(
       StickerAuctionModel auction);
+  Future<Either<AuctionFailure, StickerAuctionModel>> getAuctionById(
+      String auctionId);
 }

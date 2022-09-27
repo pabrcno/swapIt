@@ -17,8 +17,9 @@ class StickerAuctionScreen extends StatelessWidget {
   final StickerAuctionModel auction;
   final StickerAuctionController controller = getIt<StickerAuctionController>();
 
-  StickerAuctionScreen({Key? key, required this.auction}) : super(key: key);
-
+  StickerAuctionScreen({Key? key, required this.auction}) : super(key: key) {
+    controller.getAuction(auctionId: auction.id);
+  }
   onBid(
       {required List<StickerModel> selectedStickers,
       required double selectedPrice}) async {
@@ -75,13 +76,13 @@ class StickerAuctionScreen extends StatelessWidget {
                                           endTime: auction.auctionEnd!,
                                           textStyle:
                                               const TextStyle(fontSize: 20)),
-                                      Text(
-                                        "${auction.bestPrice} \$",
-                                        style: const TextStyle(
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
+                                      Obx(() => Text(
+                                            "${controller.bestPrice} \$",
+                                            style: const TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
                                     ],
                                   ),
                                   const SizedBox(

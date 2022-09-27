@@ -26,16 +26,16 @@ class StickerPreviewList extends StatelessWidget {
                   "No auctions yet",
                   style: Theme.of(context).textTheme.headline6,
                 ))
-              : ListView.separated(
-                  itemCount: controller.auctions.length,
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 12,
-                  ),
-                  itemBuilder: (context, index) {
-                    return StickerPreview(
-                        previewData: controller.auctions[index]);
-                  },
-                ),
+              : Obx(() => ListView.separated(
+                    itemCount: controller.auctions.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 12,
+                    ),
+                    itemBuilder: (context, index) {
+                      return StickerPreview(
+                          previewData: controller.auctions[index]);
+                    },
+                  )),
     );
   }
 }

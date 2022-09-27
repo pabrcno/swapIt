@@ -173,4 +173,17 @@ class AuctionService implements IAuctionService {
     final auction = StickerAuctionModel.fromJson(jsonDecode(jsonEncode(data)));
     return auction;
   }
+
+  @override
+  Future<Either<AuctionFailure, StickerAuctionModel>> getAuctionById(
+      String auctionId) async {
+    try {
+      final result = await _fbFunctions
+          .httpsCallable('$_fbFunctionPrefix-getAuctionById')
+          .call(auctionId);
+      return right(await _auctionFromFirebase(result));
+    } on FirebaseFunctionsException {
+      return left(const AuctionFailure.unexpected());
+    }
+  }
 }

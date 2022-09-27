@@ -13,16 +13,17 @@ class Chronometer extends StatefulWidget {
 }
 
 class _ChronometerState extends State<Chronometer> {
-  Duration timeLeft = Duration.zero;
+  late Duration timeLeft;
+  late Timer timer;
 
   @override
   void initState() {
     super.initState();
 
-    Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      if (widget.endTime.difference(DateTime.now()) <= Duration.zero ||
-          !mounted) {
-        t.cancel();
+    timeLeft = widget.endTime.difference(DateTime.now());
+    timer = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      if (!mounted || timeLeft.inSeconds <= 0) {
+        timer.cancel();
         return;
       }
       setState(() {
