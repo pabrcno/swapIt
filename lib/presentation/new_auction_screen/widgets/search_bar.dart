@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:paginated_search_bar/paginated_search_bar.dart';
 import 'package:swapit/domain/sticker/sticker_model.dart';
 
-import '../../../dev_data.dart';
+import '../../../application/auction/sticker_auction_controller.dart';
+import '../../../injection.dart';
 
 class SearchBar extends StatefulWidget {
   final String placeHolder;
   final Function(StickerModel) onStickerSelected;
-  const SearchBar(
-      {Key? key, required this.placeHolder, required this.onStickerSelected})
+
+  final StickerAuctionController controller = getIt<StickerAuctionController>();
+  SearchBar(
+      {Key? key, required this.placeHolder, required this.onStickerSelected, r})
       : super(key: key);
 
   @override
@@ -42,10 +45,8 @@ class _SearchBarState extends State<SearchBar> {
               }) async {
                 return Future.delayed(const Duration(milliseconds: 0),
                     () async {
-                  return data
-                      .map((e) => StickerModel.fromJson(
-                          e["sticker"] as Map<String, dynamic>))
-                      .toList();
+                  await widget.controller.searchStickers(query: searchQuery);
+                  return widget.controller.searchResults;
                 });
               },
               itemBuilder: (
@@ -86,7 +87,8 @@ class StickerRecommendation extends StatelessWidget {
         return setSticker(StickerModel(
             id: stickerModel.id,
             name: stickerModel.name,
-            imageUrl: stickerModel.imageUrl));
+            imageUrl: stickerModel.imageUrl,
+            country: stickerModel.country));
       },
       child: SizedBox(
         height: 110,

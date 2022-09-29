@@ -15,6 +15,7 @@ class StickerAuctionController extends GetxController {
   final Rx<StickerAuctionModel> _auction = StickerAuctionModel.empty().obs;
   final RxList<StickerAuctionModel> _auctions = <StickerAuctionModel>[].obs;
   final RxBool _isLoading = false.obs;
+  final RxList<StickerModel> _searchResults = <StickerModel>[].obs;
 
   StickerAuctionController(this._auctionService);
 
@@ -31,6 +32,11 @@ class StickerAuctionController extends GetxController {
   set auction(StickerAuctionModel value) => _auction.value = value;
 
   set auctions(List<StickerAuctionModel> value) => _auctions.assignAll(value);
+
+  List<StickerModel> get searchResults => _searchResults;
+
+  set searchResults(List<StickerModel> value) =>
+      _searchResults.assignAll(value);
 
   set sticker(StickerModel sticker) {
     _auction.value = _auction.value.copyWith(sticker: sticker);
@@ -149,6 +155,19 @@ class StickerAuctionController extends GetxController {
             auction: r,
           ));
     });
+    toggleIsLoading();
+  }
+
+  searchStickers({required String query}) async {
+    toggleIsLoading();
+    var stickersOption = await _auctionService.searchStickers(query);
+
+    stickersOption.fold((l) {
+      return [];
+    }, (r) {
+      searchResults = r;
+    });
+
     toggleIsLoading();
   }
 }

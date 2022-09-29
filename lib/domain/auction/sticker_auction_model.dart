@@ -10,7 +10,7 @@ class StickerAuctionModel with _$StickerAuctionModel {
   @JsonSerializable(explicitToJson: true)
   const factory StickerAuctionModel({
     required String id,
-    required String ownerId,
+    required String? ownerId,
     required StickerModel sticker,
     required String ownerLocation,
     required List<StickerModel> exchangeables,
@@ -33,8 +33,8 @@ class StickerAuctionModel with _$StickerAuctionModel {
         exchangeables: [],
         bestPrice: 0,
         winnerId: null,
-        auctionEnd: DateTime.now(),
-        auctionStart: DateTime.now(),
+        auctionEnd: null,
+        auctionStart: null,
         bids: [],
       );
 }

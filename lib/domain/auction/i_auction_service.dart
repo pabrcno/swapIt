@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:swapit/domain/auction/bid_model.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
+import 'package:swapit/domain/sticker/sticker_model.dart';
 
 import 'auction_failure.dart';
 
@@ -28,4 +29,6 @@ abstract class IAuctionService {
       StickerAuctionModel auction);
   Future<Either<AuctionFailure, StickerAuctionModel>> getAuctionById(
       String auctionId);
+  Future<Either<AuctionFailure, List<StickerModel>>> searchStickers(
+      String search);
 }

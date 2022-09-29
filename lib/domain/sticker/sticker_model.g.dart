@@ -11,6 +11,7 @@ _$_StickerModel _$$_StickerModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       imageUrl: json['imageUrl'] as String,
+      country: json['country'] as String?,
     );
 
 Map<String, dynamic> _$$_StickerModelToJson(_$_StickerModel instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$_StickerModelToJson(_$_StickerModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'imageUrl': instance.imageUrl,
+      'country': instance.country,
     };

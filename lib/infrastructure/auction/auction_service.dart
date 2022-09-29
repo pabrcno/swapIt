@@ -8,6 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:swapit/domain/auction/bid_model.dart';
 import 'package:swapit/domain/auction/i_auction_service.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
+import 'package:swapit/domain/sticker/sticker_model.dart';
 
 @LazySingleton(as: IAuctionService)
 class AuctionService implements IAuctionService {
@@ -182,6 +183,22 @@ class AuctionService implements IAuctionService {
           .httpsCallable('$_fbFunctionPrefix-getAuctionById')
           .call(auctionId);
       return right(await _auctionFromFirebase(result));
+    } on FirebaseFunctionsException {
+      return left(const AuctionFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<AuctionFailure, List<StickerModel>>> searchStickers(
+      String search) async {
+    try {
+      final result = await _fbFunctions
+          .httpsCallable('$_fbFunctionPrefix-searchStickers')
+          .call(search);
+      final stickers = (result.data as List)
+          .map((e) => StickerModel.fromJson(jsonDecode(jsonEncode(e))))
+          .toList();
+      return right(stickers);
     } on FirebaseFunctionsException {
       return left(const AuctionFailure.unexpected());
     }

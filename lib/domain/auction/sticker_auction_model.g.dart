@@ -10,7 +10,7 @@ _$_StickerAuctionModel _$$_StickerAuctionModelFromJson(
         Map<String, dynamic> json) =>
     _$_StickerAuctionModel(
       id: json['id'] as String,
-      ownerId: json['ownerId'] as String,
+      ownerId: json['ownerId'] as String?,
       sticker: StickerModel.fromJson(json['sticker'] as Map<String, dynamic>),
       ownerLocation: json['ownerLocation'] as String,
       exchangeables: (json['exchangeables'] as List<dynamic>)

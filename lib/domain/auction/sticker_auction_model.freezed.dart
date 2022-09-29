@@ -21,7 +21,7 @@ StickerAuctionModel _$StickerAuctionModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StickerAuctionModel {
   String get id => throw _privateConstructorUsedError;
-  String get ownerId => throw _privateConstructorUsedError;
+  String? get ownerId => throw _privateConstructorUsedError;
   StickerModel get sticker => throw _privateConstructorUsedError;
   String get ownerLocation => throw _privateConstructorUsedError;
   List<StickerModel> get exchangeables => throw _privateConstructorUsedError;
@@ -44,7 +44,7 @@ abstract class $StickerAuctionModelCopyWith<$Res> {
       _$StickerAuctionModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String ownerId,
+      String? ownerId,
       StickerModel sticker,
       String ownerLocation,
       List<StickerModel> exchangeables,
@@ -87,7 +87,7 @@ class _$StickerAuctionModelCopyWithImpl<$Res>
       ownerId: ownerId == freezed
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       sticker: sticker == freezed
           ? _value.sticker
           : sticker // ignore: cast_nullable_to_non_nullable
@@ -140,7 +140,7 @@ abstract class _$$_StickerAuctionModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String ownerId,
+      String? ownerId,
       StickerModel sticker,
       String ownerLocation,
       List<StickerModel> exchangeables,
@@ -186,7 +186,7 @@ class __$$_StickerAuctionModelCopyWithImpl<$Res>
       ownerId: ownerId == freezed
           ? _value.ownerId
           : ownerId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       sticker: sticker == freezed
           ? _value.sticker
           : sticker // ignore: cast_nullable_to_non_nullable
@@ -247,7 +247,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
   @override
   final String id;
   @override
-  final String ownerId;
+  final String? ownerId;
   @override
   final StickerModel sticker;
   @override
@@ -332,7 +332,7 @@ class _$_StickerAuctionModel implements _StickerAuctionModel {
 abstract class _StickerAuctionModel implements StickerAuctionModel {
   const factory _StickerAuctionModel(
       {required final String id,
-      required final String ownerId,
+      required final String? ownerId,
       required final StickerModel sticker,
       required final String ownerLocation,
       required final List<StickerModel> exchangeables,
@@ -348,7 +348,7 @@ abstract class _StickerAuctionModel implements StickerAuctionModel {
   @override
   String get id;
   @override
-  String get ownerId;
+  String? get ownerId;
   @override
   StickerModel get sticker;
   @override

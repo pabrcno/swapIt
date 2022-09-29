@@ -23,6 +23,7 @@ mixin _$StickerModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  String? get country => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,7 @@ abstract class $StickerModelCopyWith<$Res> {
   factory $StickerModelCopyWith(
           StickerModel value, $Res Function(StickerModel) then) =
       _$StickerModelCopyWithImpl<$Res>;
-  $Res call({String id, String name, String imageUrl});
+  $Res call({String id, String name, String imageUrl, String? country});
 }
 
 /// @nodoc
@@ -51,6 +52,7 @@ class _$StickerModelCopyWithImpl<$Res> implements $StickerModelCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? country = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -65,6 +67,10 @@ class _$StickerModelCopyWithImpl<$Res> implements $StickerModelCopyWith<$Res> {
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -76,7 +82,7 @@ abstract class _$$_StickerModelCopyWith<$Res>
           _$_StickerModel value, $Res Function(_$_StickerModel) then) =
       __$$_StickerModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String imageUrl});
+  $Res call({String id, String name, String imageUrl, String? country});
 }
 
 /// @nodoc
@@ -95,6 +101,7 @@ class __$$_StickerModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? imageUrl = freezed,
+    Object? country = freezed,
   }) {
     return _then(_$_StickerModel(
       id: id == freezed
@@ -109,6 +116,10 @@ class __$$_StickerModelCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -118,7 +129,10 @@ class __$$_StickerModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_StickerModel implements _StickerModel {
   const _$_StickerModel(
-      {required this.id, required this.name, required this.imageUrl});
+      {required this.id,
+      required this.name,
+      required this.imageUrl,
+      required this.country});
 
   factory _$_StickerModel.fromJson(Map<String, dynamic> json) =>
       _$$_StickerModelFromJson(json);
@@ -129,10 +143,12 @@ class _$_StickerModel implements _StickerModel {
   final String name;
   @override
   final String imageUrl;
+  @override
+  final String? country;
 
   @override
   String toString() {
-    return 'StickerModel(id: $id, name: $name, imageUrl: $imageUrl)';
+    return 'StickerModel(id: $id, name: $name, imageUrl: $imageUrl, country: $country)';
   }
 
   @override
@@ -142,7 +158,8 @@ class _$_StickerModel implements _StickerModel {
             other is _$_StickerModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl) &&
+            const DeepCollectionEquality().equals(other.country, country));
   }
 
   @JsonKey(ignore: true)
@@ -151,7 +168,8 @@ class _$_StickerModel implements _StickerModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(imageUrl));
+      const DeepCollectionEquality().hash(imageUrl),
+      const DeepCollectionEquality().hash(country));
 
   @JsonKey(ignore: true)
   @override
@@ -170,7 +188,8 @@ abstract class _StickerModel implements StickerModel {
   const factory _StickerModel(
       {required final String id,
       required final String name,
-      required final String imageUrl}) = _$_StickerModel;
+      required final String imageUrl,
+      required final String? country}) = _$_StickerModel;
 
   factory _StickerModel.fromJson(Map<String, dynamic> json) =
       _$_StickerModel.fromJson;
@@ -181,6 +200,8 @@ abstract class _StickerModel implements StickerModel {
   String get name;
   @override
   String get imageUrl;
+  @override
+  String? get country;
   @override
   @JsonKey(ignore: true)
   _$$_StickerModelCopyWith<_$_StickerModel> get copyWith =>

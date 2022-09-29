@@ -9,6 +9,7 @@ class StickerModel with _$StickerModel {
     required String id,
     required String name,
     required String imageUrl,
+    required String? country,
   }) = _StickerModel;
 
   factory StickerModel.fromJson(Map<String, dynamic> json) =>
@@ -18,5 +19,6 @@ class StickerModel with _$StickerModel {
         id: '',
         name: '',
         imageUrl: '',
+        country: '',
       );
 }
