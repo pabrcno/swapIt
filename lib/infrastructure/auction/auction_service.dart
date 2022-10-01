@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:algolia/algolia.dart';
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
@@ -17,6 +18,8 @@ class AuctionService implements IAuctionService {
 
   final _fbFunctionPrefix = 'stickerAuctionFunctions';
   final _storage = FirebaseStorage.instance;
+  final _algolia = const Algolia.init(
+      applicationId: "E5A601J0M0", apiKey: "0dce1979c577735173a881918f047688");
 
   @override
   Future<Either<AuctionFailure, Unit>> delete(
@@ -209,6 +212,24 @@ class AuctionService implements IAuctionService {
           .map((e) => StickerModel.fromJson(jsonDecode(jsonEncode(e))))
           .toList();
       return right(stickers);
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
+      return left(const AuctionFailure.unexpected());
+    }
+  }
+
+  @override
+  Future<Either<AuctionFailure, List<StickerAuctionModel>>> searchAuctions(
+      {required String search}) async {
+    try {
+      var query = _algolia.instance.index('sticker_auctions').query(search);
+      var res = await query.getObjects();
+      final auctionsPromises =
+          res.hits.map((e) => getAuctionById(e.data['objectID'])).toList();
+
+      final auctions = await Future.wait(auctionsPromises);
+      return right(
+          auctions.map((e) => e.getOrElse(() => throw Exception())).toList());
     } on FirebaseFunctionsException catch (e) {
       log(e.toString());
       return left(const AuctionFailure.unexpected());

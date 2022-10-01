@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swapit/presentation/home/widgets/search_auction.dart';
 import 'package:swapit/presentation/home/widgets/sticker_preview_list.dart';
 import 'package:swapit/presentation/new_auction_screen/new_auction_screen.dart';
 
@@ -18,7 +19,7 @@ class Home extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              Get.to(() => NewAuctionScreen());
+              Get.to(() => SearchAuction(), transition: Transition.rightToLeft);
             },
             icon: const Icon(Icons.search),
           )

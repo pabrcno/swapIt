@@ -13,15 +13,6 @@ abstract class IAuctionService {
   Future<Either<AuctionFailure, List<StickerAuctionModel>>> getAuctionsByUser(
       String userId);
 
-  Future<Either<AuctionFailure, List<StickerAuctionModel>>>
-      getAuctionsBySticker(String stickerId);
-
-  Future<Either<AuctionFailure, List<StickerAuctionModel>>>
-      getAuctionsByStickerAndUser(String stickerId, String userId);
-
-  Future<Either<AuctionFailure, List<StickerAuctionModel>>>
-      getAuctionsByStickerAndCity(String stickerId, String city);
-
   Future<Either<AuctionFailure, StickerAuctionModel>> bid(
       String auctionId, BidModel bid);
 
@@ -31,4 +22,7 @@ abstract class IAuctionService {
       String auctionId);
   Future<Either<AuctionFailure, List<StickerModel>>> searchStickers(
       String search);
+
+  Future<Either<AuctionFailure, List<StickerAuctionModel>>> searchAuctions(
+      {required String search});
 }

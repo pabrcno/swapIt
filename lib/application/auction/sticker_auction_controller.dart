@@ -167,4 +167,17 @@ class StickerAuctionController extends GetxController {
 
     toggleIsLoading();
   }
+
+  searchAuctions({required String search}) async {
+    toggleIsLoading();
+    var auctionsOption = await _auctionService.searchAuctions(search: search);
+
+    auctionsOption.fold((l) {
+      print("Error searching auctions");
+    }, (r) {
+      auctions = r;
+    });
+
+    toggleIsLoading();
+  }
 }
