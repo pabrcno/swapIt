@@ -7,7 +7,6 @@ import 'package:swapit/domain/auction/i_auction_service.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/domain/sticker/sticker_model.dart';
 import 'package:swapit/presentation/home/home.dart';
-import 'package:swapit/presentation/sticker_auction_screen/sticker_auction_screen.dart';
 
 @injectable
 class StickerAuctionController extends GetxController {
@@ -104,6 +103,7 @@ class StickerAuctionController extends GetxController {
   }
 
   getAuction({required String auctionId}) async {
+    isLoading = true;
     (await _auctionService.getAuctionById(auctionId)).fold(
       (l) {
         print('Error getting auction');
@@ -112,6 +112,7 @@ class StickerAuctionController extends GetxController {
         auction = r;
       },
     );
+    isLoading = false;
   }
 
   getAllAuctions() async {
@@ -150,10 +151,6 @@ class StickerAuctionController extends GetxController {
       );
     }, (r) {
       auction = r;
-
-      Get.to(() => StickerAuctionScreen(
-            auction: r,
-          ));
     });
     toggleIsLoading();
   }

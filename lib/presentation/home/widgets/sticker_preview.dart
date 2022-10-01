@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../../domain/auction/sticker_auction_model.dart';
 import '../../core/widgets/chronometer.dart';
 import '../../core/widgets/exchanges_list_view.dart';
-import '../../sticker_auction_screen/sticker_auction_screen.dart';
 
 class StickerPreview extends StatelessWidget {
   final StickerAuctionModel previewData;
+  final Function() onTap;
 
-  const StickerPreview({Key? key, required this.previewData}) : super(key: key);
+  const StickerPreview(
+      {Key? key, required this.previewData, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(() => StickerAuctionScreen(auction: previewData)),
+      onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(5),
         height: 180,

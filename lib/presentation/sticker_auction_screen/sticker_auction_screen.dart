@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/presentation/core/constants.dart';
 import 'package:swapit/presentation/core/widgets/action_button.dart';
 import 'package:swapit/presentation/sticker_auction_screen/widgets/bid_dialog.dart';
@@ -14,17 +13,14 @@ import '../core/widgets/exchanges_list_view.dart';
 import '../core/widgets/swapit_loader.dart';
 
 class StickerAuctionScreen extends StatelessWidget {
-  final StickerAuctionModel auction;
   final StickerAuctionController controller = getIt<StickerAuctionController>();
 
-  StickerAuctionScreen({Key? key, required this.auction}) : super(key: key) {
-    controller.getAuction(auctionId: auction.id);
-  }
+  StickerAuctionScreen({Key? key}) : super(key: key);
   onBid(
       {required List<StickerModel> selectedStickers,
       required double selectedPrice}) async {
     await controller.bid(
-        auctionId: auction.id,
+        auctionId: controller.auction.id,
         selectedPrice: selectedPrice,
         selectedStickers: selectedStickers);
   }
@@ -34,7 +30,7 @@ class StickerAuctionScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-            "${auction.sticker.name} #${auction.sticker.id}",
+            "${controller.auction.sticker.name} #${controller.auction.sticker.id}",
           ),
         ),
         body: Container(
@@ -55,7 +51,7 @@ class StickerAuctionScreen extends StatelessWidget {
                           height: 10,
                         ),
                         Image.network(
-                          auction.sticker.imageUrl,
+                          controller.auction.sticker.imageUrl,
                           width: MediaQuery.of(context).size.width,
                         ),
                         const SizedBox(
@@ -73,7 +69,8 @@ class StickerAuctionScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Chronometer(
-                                          endTime: auction.auctionEnd!,
+                                          endTime:
+                                              controller.auction.auctionEnd!,
                                           textStyle:
                                               const TextStyle(fontSize: 20)),
                                       Obx(() => Text(
@@ -103,7 +100,7 @@ class StickerAuctionScreen extends StatelessWidget {
                                             width: 5,
                                           ),
                                           Text(
-                                            auction.ownerLocation,
+                                            controller.auction.ownerLocation,
                                             style: const TextStyle(
                                               fontSize: 14,
                                             ),
@@ -119,7 +116,9 @@ class StickerAuctionScreen extends StatelessWidget {
                                   title: "Bid",
                                   onPressed: () async {
                                     Get.dialog(
-                                      BidDialog(auction: auction, onBid: onBid),
+                                      BidDialog(
+                                          auction: controller.auction,
+                                          onBid: onBid),
                                     );
                                   }),
                             ],
@@ -143,7 +142,7 @@ class StickerAuctionScreen extends StatelessWidget {
                               ),
                               ExchangesListView(
                                 height: 200,
-                                exchanges: auction.exchangeables,
+                                exchanges: controller.exchangeables,
                               ),
                               const SizedBox(
                                 height: 10,
@@ -154,26 +153,32 @@ class StickerAuctionScreen extends StatelessWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          auction.bids.isEmpty ? "" : "Bids",
-                          style: const TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 200,
-                          width: MediaQuery.of(context).size.width,
-                          child: ListView.separated(
-                            itemCount: auction.bids.length,
-                            scrollDirection: Axis.horizontal,
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(
-                              width: 20,
-                            ),
-                            itemBuilder: (context, index) {
-                              return BidTile(bid: auction.bids[index]);
-                            },
-                          ),
-                        ),
+                        Obx(() => Text(
+                              controller.auction.bids.isEmpty ? "" : "Bids",
+                              style: const TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            )),
+                        Obx(
+                          (() => controller.bids.isNotEmpty
+                              ? SizedBox(
+                                  height: 200,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Obx(
+                                    (() => ListView.separated(
+                                          itemCount: controller.bids.length,
+                                          scrollDirection: Axis.horizontal,
+                                          separatorBuilder: (context, index) =>
+                                              const SizedBox(
+                                            width: 20,
+                                          ),
+                                          itemBuilder: (context, index) =>
+                                              BidTile(
+                                                  bid: controller.bids[index]),
+                                        )),
+                                  ),
+                                )
+                              : const SizedBox()),
+                        )
                       ],
                     ),
                   ),

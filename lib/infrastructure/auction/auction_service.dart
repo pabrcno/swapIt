@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -25,7 +26,8 @@ class AuctionService implements IAuctionService {
           .httpsCallable('deleteAuction')
           .call(<String, dynamic>{'auctionId': auction.id});
       return right(unit);
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -38,7 +40,8 @@ class AuctionService implements IAuctionService {
           await _fbFunctions.httpsCallable('$_fbFunctionPrefix-getAll').call();
 
       return right(await _auctionsFromFirebase(result));
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -54,7 +57,8 @@ class AuctionService implements IAuctionService {
           .map((e) => StickerAuctionModel.fromJson(e))
           .toList();
       return right(auctions);
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -70,7 +74,8 @@ class AuctionService implements IAuctionService {
           .map((e) => StickerAuctionModel.fromJson(e))
           .toList();
       return right(auctions);
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -86,7 +91,8 @@ class AuctionService implements IAuctionService {
           .map((e) => StickerAuctionModel.fromJson(e))
           .toList();
       return right(auctions);
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -102,7 +108,8 @@ class AuctionService implements IAuctionService {
           .map((e) => StickerAuctionModel.fromJson(e))
           .toList();
       return right(auctions);
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -117,7 +124,8 @@ class AuctionService implements IAuctionService {
       var data = jsonEncode({...res.data, 'id': res.data["id"]});
 
       return right(StickerAuctionModel.fromJson(jsonDecode(data)));
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -131,7 +139,8 @@ class AuctionService implements IAuctionService {
           .call(<String, dynamic>{'auctionId': auctionId, 'bid': bid.toJson()});
 
       return right(await _auctionFromFirebase(res));
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -183,7 +192,8 @@ class AuctionService implements IAuctionService {
           .httpsCallable('$_fbFunctionPrefix-getAuctionById')
           .call(auctionId);
       return right(await _auctionFromFirebase(result));
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
@@ -199,7 +209,8 @@ class AuctionService implements IAuctionService {
           .map((e) => StickerModel.fromJson(jsonDecode(jsonEncode(e))))
           .toList();
       return right(stickers);
-    } on FirebaseFunctionsException {
+    } on FirebaseFunctionsException catch (e) {
+      log(e.toString());
       return left(const AuctionFailure.unexpected());
     }
   }
