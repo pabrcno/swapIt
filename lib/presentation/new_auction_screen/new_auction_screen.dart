@@ -78,20 +78,6 @@ class NewAuctionScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 20),
-              SearchBar(
-                placeHolder: "Add Exchanges",
-                onStickerSelected: controller.addExchangeable,
-              ),
-              const SizedBox(height: 10),
-              Obx(
-                () => controller.exchangeables.isNotEmpty
-                    ? ExchangesListView(
-                        height: 200,
-                        exchanges: controller.exchangeables,
-                      )
-                    : const SizedBox(),
-              ),
-              const SizedBox(height: 10),
               Obx((() => ActionButton(
                     onPressed: () {
                       DatePicker.showDateTimePicker(context,
@@ -114,7 +100,21 @@ class NewAuctionScreen extends StatelessWidget {
                     title: controller.auctionEnd == null
                         ? 'Select end date'
                         : 'End date (${controller.auctionEnd!.toLocal().toString().substring(0, 16)})',
-                  )))
+                  ))),
+              const SizedBox(height: 20),
+              SearchBar(
+                placeHolder: "Add Exchanges",
+                onStickerSelected: controller.addExchangeable,
+              ),
+              const SizedBox(height: 10),
+              Obx(
+                () => controller.exchangeables.isNotEmpty
+                    ? ExchangesListView(
+                        height: 200,
+                        exchanges: controller.exchangeables,
+                      )
+                    : const SizedBox(),
+              ),
             ],
           ),
         ),
