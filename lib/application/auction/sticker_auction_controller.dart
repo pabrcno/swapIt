@@ -15,7 +15,7 @@ class StickerAuctionController extends GetxController {
   final RxList<StickerAuctionModel> _auctions = <StickerAuctionModel>[].obs;
   final RxBool _isLoading = false.obs;
   final RxList<StickerModel> _searchResults = <StickerModel>[].obs;
-
+  final RxInt number = 0.obs;
   StickerAuctionController(this._auctionService);
 
   bool get isLoading => _isLoading.value;
@@ -30,7 +30,7 @@ class StickerAuctionController extends GetxController {
 
   set auction(StickerAuctionModel value) => _auction.value = value;
 
-  set auctions(List<StickerAuctionModel> value) => _auctions.assignAll(value);
+  set auctions(List<StickerAuctionModel> value) => _auctions.value = value;
 
   List<StickerModel> get searchResults => _searchResults;
 
@@ -87,7 +87,7 @@ class StickerAuctionController extends GetxController {
       (bestPrice > 0 || exchangeables.isNotEmpty) &&
       ownerLocation != '';
 
-  createStickerAuction() async {
+  Future<void> createStickerAuction() async {
     var creationOption = await _auctionService.createAuction(auction);
 
     creationOption.fold(
@@ -95,14 +95,14 @@ class StickerAuctionController extends GetxController {
         print('Error creating auction');
       },
       (r) async {
-        await getAllAuctions();
+        getAllAuctions();
         print('Auction created');
-        Get.off(() => const Home());
+        Get.off(() => Home());
       },
     );
   }
 
-  getAuction({required String auctionId}) async {
+  Future<void> getAuction({required String auctionId}) async {
     isLoading = true;
     (await _auctionService.getAuctionById(auctionId)).fold(
       (l) {
@@ -115,7 +115,7 @@ class StickerAuctionController extends GetxController {
     isLoading = false;
   }
 
-  getAllAuctions() async {
+  Future<void> getAllAuctions() async {
     toggleIsLoading();
     var auctionsOption = await _auctionService.getAllAuctions();
 
@@ -129,7 +129,7 @@ class StickerAuctionController extends GetxController {
     toggleIsLoading();
   }
 
-  bid(
+  Future<void> bid(
       {required String auctionId,
       required List<StickerModel> selectedStickers,
       required double selectedPrice}) async {
@@ -155,7 +155,7 @@ class StickerAuctionController extends GetxController {
     toggleIsLoading();
   }
 
-  searchStickers({required String query}) async {
+  Future<void> searchStickers({required String query}) async {
     toggleIsLoading();
     var stickersOption = await _auctionService.searchStickers(query);
 
@@ -168,7 +168,7 @@ class StickerAuctionController extends GetxController {
     toggleIsLoading();
   }
 
-  searchAuctions({required String search}) async {
+  Future<void> searchAuctions({required String search}) async {
     toggleIsLoading();
     var auctionsOption = await _auctionService.searchAuctions(search: search);
 
@@ -176,6 +176,7 @@ class StickerAuctionController extends GetxController {
       print("Error searching auctions");
     }, (r) {
       auctions = r;
+      number.value += 1;
     });
 
     toggleIsLoading();

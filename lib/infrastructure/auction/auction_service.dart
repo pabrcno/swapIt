@@ -50,57 +50,6 @@ class AuctionService implements IAuctionService {
   }
 
   @override
-  Future<Either<AuctionFailure, List<StickerAuctionModel>>>
-      getAuctionsBySticker(String stickerId) async {
-    try {
-      final result = await _fbFunctions
-          .httpsCallable('getAuctionsBySticker')
-          .call(<String, dynamic>{'stickerId': stickerId});
-      final auctions = (result.data as List)
-          .map((e) => StickerAuctionModel.fromJson(e))
-          .toList();
-      return right(auctions);
-    } on FirebaseFunctionsException catch (e) {
-      log(e.toString());
-      return left(const AuctionFailure.unexpected());
-    }
-  }
-
-  @override
-  Future<Either<AuctionFailure, List<StickerAuctionModel>>>
-      getAuctionsByStickerAndCity(String stickerId, String city) async {
-    try {
-      final result = await _fbFunctions
-          .httpsCallable('getAuctionsByStickerAndCity')
-          .call(<String, dynamic>{'stickerId': stickerId, 'city': city});
-      final auctions = (result.data as List)
-          .map((e) => StickerAuctionModel.fromJson(e))
-          .toList();
-      return right(auctions);
-    } on FirebaseFunctionsException catch (e) {
-      log(e.toString());
-      return left(const AuctionFailure.unexpected());
-    }
-  }
-
-  @override
-  Future<Either<AuctionFailure, List<StickerAuctionModel>>>
-      getAuctionsByStickerAndUser(String stickerId, String userId) async {
-    try {
-      final result = await _fbFunctions
-          .httpsCallable('getAuctionsByStickerAndUser')
-          .call(<String, dynamic>{'stickerId': stickerId, 'userId': userId});
-      final auctions = (result.data as List)
-          .map((e) => StickerAuctionModel.fromJson(e))
-          .toList();
-      return right(auctions);
-    } on FirebaseFunctionsException catch (e) {
-      log(e.toString());
-      return left(const AuctionFailure.unexpected());
-    }
-  }
-
-  @override
   Future<Either<AuctionFailure, List<StickerAuctionModel>>> getAuctionsByUser(
       String userId) async {
     try {

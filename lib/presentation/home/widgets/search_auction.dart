@@ -1,11 +1,16 @@
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:swapit/application/auction/sticker_auction_controller.dart';
 import 'package:swapit/presentation/home/widgets/sticker_preview_list.dart';
 
 import '../../../injection.dart';
+import '../../core/utils.dart';
+import '../../core/widgets/swapit_loader.dart';
 
 class SearchAuction extends StatelessWidget {
   final StickerAuctionController controller = getIt<StickerAuctionController>();
+  final _debouncer = Debouncer(milliseconds: 500);
   SearchAuction({Key? key}) : super(key: key);
 
   @override
@@ -21,8 +26,11 @@ class SearchAuction extends StatelessWidget {
             height: 60,
             child: Center(
               child: TextField(
-                onChanged: ((value) async =>
-                    await controller.searchAuctions(search: value)),
+                onChanged: (value) => EasyDebounce.debounce(
+                    'auction-search-debounce', // <-- An ID for this particular debouncer
+                    const Duration(
+                        milliseconds: 500), // <-- The debounce duration
+                    () => controller.searchAuctions(search: value)),
                 style: const TextStyle(fontSize: 20),
                 autofocus: true,
                 decoration: InputDecoration(
@@ -42,7 +50,21 @@ class SearchAuction extends StatelessWidget {
               ),
             ),
           )),
-      body: StickerPreviewList(),
+      body: Obx(
+        (() => controller.isLoading
+            ? const Center(
+                child: SwapItLoader(),
+              )
+            : controller.auctions.isEmpty
+                ? Center(
+                    child: Text(
+                    "No auctions by this parameters.",
+                    style: Theme.of(context).textTheme.headline6,
+                  ))
+                : StickerPreviewList(
+                    auctions: controller.auctions,
+                  )),
+      ),
     );
   }
 }
