@@ -17,7 +17,7 @@ class StickerPreview extends StatelessWidget {
       onTap: () => Get.to(() => StickerAuctionScreen(auction: previewData)),
       child: Container(
         padding: const EdgeInsets.all(5),
-        height: 180,
+        height: 200,
         width: double.infinity,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -29,6 +29,7 @@ class StickerPreview extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
@@ -50,17 +51,12 @@ class StickerPreview extends StatelessWidget {
                                 fontSize: 12, color: Colors.grey)),
                       ],
                     ),
-                    const SizedBox(height: 10),
                     Text(
                       previewData.ownerLocation,
                       style: const TextStyle(fontSize: 12, color: Colors.grey),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
                     ExchangesListView(
-                        height: 68, exchanges: previewData.exchangeables),
-                    const SizedBox(height: 10),
+                        height: 70, exchanges: previewData.exchangeables),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

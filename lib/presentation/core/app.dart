@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:swapit/presentation/auth/login/login_screen.dart';
+import 'package:swapit/presentation/auth/login/auth_gate.dart';
 
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
@@ -63,7 +63,7 @@ class App extends StatelessWidget {
         brightness: Brightness.dark,
       ),
       debugShowCheckedModeBanner: false,
-      home: const LoginScreen(),
+      home: const AuthGate(),
     );
   }
 }
