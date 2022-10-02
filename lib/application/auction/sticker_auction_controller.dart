@@ -15,7 +15,7 @@ class StickerAuctionController extends GetxController {
   final RxList<StickerAuctionModel> _auctions = <StickerAuctionModel>[].obs;
   final RxBool _isLoading = false.obs;
   final RxList<StickerModel> _searchResults = <StickerModel>[].obs;
-  final RxInt number = 0.obs;
+
   StickerAuctionController(this._auctionService);
 
   bool get isLoading => _isLoading.value;
