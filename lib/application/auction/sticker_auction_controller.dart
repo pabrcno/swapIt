@@ -175,8 +175,10 @@ class StickerAuctionController extends GetxController {
     auctionsOption.fold((l) {
       print("Error searching auctions");
     }, (r) {
-      auctions = r;
-      number.value += 1;
+      auctions = r
+        ..sort(
+          (a, b) => a.auctionEnd!.compareTo(b.auctionEnd!),
+        );
     });
 
     toggleIsLoading();

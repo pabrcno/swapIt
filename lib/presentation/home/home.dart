@@ -11,7 +11,7 @@ import '../core/widgets/swapit_loader.dart';
 class Home extends StatelessWidget {
   final StickerAuctionController controller = getIt<StickerAuctionController>();
   Home({Key? key}) : super(key: key) {
-    controller.getAllAuctions();
+    controller.searchAuctions(search: "");
   }
 
   @override
