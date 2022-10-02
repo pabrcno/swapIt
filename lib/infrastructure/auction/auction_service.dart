@@ -154,12 +154,11 @@ class AuctionService implements IAuctionService {
   Future<Either<AuctionFailure, List<StickerModel>>> searchStickers(
       String search) async {
     try {
-      final result = await _fbFunctions
-          .httpsCallable('$_fbFunctionPrefix-searchStickers')
-          .call(search);
-      final stickers = (result.data as List)
-          .map((e) => StickerModel.fromJson(jsonDecode(jsonEncode(e))))
-          .toList();
+      var query = _algolia.instance.index('stickers').query(search);
+      var res = await query.getObjects();
+      final stickers =
+          res.hits.map((e) => StickerModel.fromJson(e.data)).toList();
+
       return right(stickers);
     } on FirebaseFunctionsException catch (e) {
       log(e.toString());
