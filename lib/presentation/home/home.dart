@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:swapit/presentation/core/widgets/app_drawer.dart';
 import 'package:swapit/presentation/home/widgets/search_auction.dart';
 import 'package:swapit/presentation/home/widgets/sticker_preview_list.dart';
 import 'package:swapit/presentation/new_auction_screen/new_auction_screen.dart';
@@ -17,6 +18,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('Auctions'),
         leading: IconButton(
