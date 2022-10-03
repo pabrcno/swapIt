@@ -18,16 +18,11 @@ class AuthGate extends StatelessWidget {
         if (!snapshot.hasData) {
           return SignInScreen(
               headerBuilder: (context, constraints, _) {
-                return Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Image.asset(
-                        'assets/logo500.png',
-                        width: MediaQuery.of(context).size.width - 100,
-                      ),
-                    ));
+                return Image.asset(
+                  'assets/logo500.png',
+                );
               },
+              headerMaxExtent: 210,
               providerConfigs: const [
                 EmailProviderConfiguration(),
                 GoogleProviderConfiguration(
