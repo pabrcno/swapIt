@@ -21,10 +21,6 @@ class Home extends StatelessWidget {
       drawer: const AppDrawer(),
       appBar: AppBar(
         title: const Text('Auctions'),
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
         actions: [
           IconButton(
             onPressed: () {
