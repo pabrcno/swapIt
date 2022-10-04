@@ -3,7 +3,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:get/get.dart';
 import 'package:swapit/application/auction/sticker_auction_controller.dart';
 import 'package:swapit/injection.dart';
-import 'package:swapit/presentation/core/constants.dart';
 import 'package:swapit/presentation/core/widgets/exchanges_list_view.dart';
 import 'package:swapit/presentation/new_auction_screen/widgets/search_bar.dart';
 
@@ -41,7 +40,7 @@ class NewAuctionScreen extends StatelessWidget {
           ],
         ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(screenPadding),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

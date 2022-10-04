@@ -23,6 +23,7 @@ class AuthGate extends StatelessWidget {
                 );
               },
               headerMaxExtent: 210,
+              oauthButtonVariant: OAuthButtonVariant.icon_and_text,
               providerConfigs: const [
                 EmailProviderConfiguration(),
                 GoogleProviderConfiguration(

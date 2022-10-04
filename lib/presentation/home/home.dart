@@ -20,7 +20,13 @@ class Home extends StatelessWidget {
     return Scaffold(
       drawer: const AppDrawer(),
       appBar: AppBar(
-        title: const Text('Auctions'),
+        title: Row(
+          children: [
+            const Text('Auctions'),
+            IconButton(
+                onPressed: () {}, icon: const Icon(Icons.filter_alt_outlined))
+          ],
+        ),
         actions: [
           IconButton(
             onPressed: () {
