@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swapit/domain/auction/sticker_auction_model.dart';
 import 'package:swapit/domain/sticker/sticker_model.dart';
-import 'package:swapit/presentation/core/widgets/action_button.dart';
 import 'package:swapit/presentation/core/widgets/selectable_exchanges_list_view.dart';
 
 import '../../../application/auction/sticker_auction_controller.dart';
+import '../../../application/payment/payment_controller.dart';
 import '../../../injection.dart';
+import '../../core/widgets/action_button.dart';
 
 class BidDialog extends StatefulWidget {
+  final PaymentController paymentController = getIt<PaymentController>();
   final StickerAuctionModel auction;
 
   final Function(
       {required List<StickerModel> selectedStickers,
       required double selectedPrice}) onBid;
-  const BidDialog({
+  BidDialog({
     Key? key,
     required this.auction,
     required this.onBid,
@@ -38,6 +40,8 @@ class _BidDialogState extends State<BidDialog> {
             widget.auction.bestPrice <= selectedPrice);
 
     if (isMinBid) {
+      await widget.paymentController
+          .pay(amount: selectedPrice, auctionId: widget.auction.id);
       await widget.onBid(
           selectedPrice: selectedPrice, selectedStickers: selectedStickers);
       return;
@@ -71,29 +75,35 @@ class _BidDialogState extends State<BidDialog> {
             const SizedBox(
               height: 16,
             ),
-            Text(
-              "Exchange offer",
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            SelectableExchangeList(
-                onChange: (exchanges) {
-                  setState(() {
-                    selectedStickers = exchanges;
-                  });
-                },
-                exchanges: widget.auction.exchangeables,
-                height: 150),
-            const SizedBox(
-              height: 16,
-            ),
+            if (widget.auction.exchangeables.isNotEmpty)
+              SizedBox(
+                  child: Column(
+                children: [
+                  Text(
+                    "Exchange offer",
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  SelectableExchangeList(
+                      onChange: (exchanges) {
+                        setState(() {
+                          selectedStickers = exchanges;
+                        });
+                      },
+                      exchanges: widget.auction.exchangeables,
+                      height: 150),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                ],
+              )),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: 280,
+                  width: 265,
                   height: 50,
                   child: ActionButton(
                     onPressed: () =>

@@ -19,7 +19,9 @@ class AuctionService implements IAuctionService {
   final _fbFunctionPrefix = 'stickerAuctionFunctions';
   final _storage = FirebaseStorage.instance;
   final _algolia = const Algolia.init(
-      applicationId: "E5A601J0M0", apiKey: "0dce1979c577735173a881918f047688");
+      applicationId: "E5A601J0M0",
+      // TODO: DELETE THIS API KEY AND USE IT FROM GH SECRETS
+      apiKey: "0dce1979c577735173a881918f047688");
 
   @override
   Future<Either<AuctionFailure, Unit>> delete(
